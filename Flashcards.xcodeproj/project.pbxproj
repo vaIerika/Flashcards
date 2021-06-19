@@ -35,6 +35,9 @@
 		AFC3C7B3246EEFFF00BE113D /* CategorySettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFC3C7B2246EEFFF00BE113D /* CategorySettings.swift */; };
 		AFC3C7B5246EF32200BE113D /* Profile.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFC3C7B4246EF32200BE113D /* Profile.swift */; };
 		AFC3C7B724700DA600BE113D /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFC3C7B624700DA600BE113D /* ProfileView.swift */; };
+		B85E3F4B267E09B3000436C8 /* DefaultCards.json in Resources */ = {isa = PBXBuildFile; fileRef = B85E3F4A267E09B3000436C8 /* DefaultCards.json */; };
+		B85E3F4D267E0A21000436C8 /* Bundle+Decodable.swift in Sources */ = {isa = PBXBuildFile; fileRef = B85E3F4C267E0A21000436C8 /* Bundle+Decodable.swift */; };
+		B85E3F50267E22E0000436C8 /* Heroes.json in Resources */ = {isa = PBXBuildFile; fileRef = B85E3F4F267E22E0000436C8 /* Heroes.json */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -68,6 +71,9 @@
 		AFC3C7B2246EEFFF00BE113D /* CategorySettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategorySettings.swift; sourceTree = "<group>"; };
 		AFC3C7B4246EF32200BE113D /* Profile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Profile.swift; sourceTree = "<group>"; };
 		AFC3C7B624700DA600BE113D /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
+		B85E3F4A267E09B3000436C8 /* DefaultCards.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = DefaultCards.json; sourceTree = "<group>"; };
+		B85E3F4C267E0A21000436C8 /* Bundle+Decodable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Bundle+Decodable.swift"; sourceTree = "<group>"; };
+		B85E3F4F267E22E0000436C8 /* Heroes.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Heroes.json; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -90,7 +96,7 @@
 			path = Fonts;
 			sourceTree = "<group>";
 		};
-		AF6F71AB2472E8D2008D3A0D /* Elements */ = {
+		AF6F71AB2472E8D2008D3A0D /* Components */ = {
 			isa = PBXGroup;
 			children = (
 				AF980C6D2475A38F0010D6A1 /* TextFieldView.swift */,
@@ -102,16 +108,16 @@
 				AF7F5965246C24B600EEBFE2 /* CardView.swift */,
 				AFC3C7B2246EEFFF00BE113D /* CategorySettings.swift */,
 			);
-			path = Elements;
+			path = Components;
 			sourceTree = "<group>";
 		};
 		AF7F595D246C21D700EEBFE2 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				B85E3F4A267E09B3000436C8 /* DefaultCards.json */,
 				AF7F595E246C21E800EEBFE2 /* Card.swift */,
-				AF7F5960246C241300EEBFE2 /* Stack.swift */,
-				AFC3C7B4246EF32200BE113D /* Profile.swift */,
 				AF14507324771A8D00E11E10 /* Hero.swift */,
+				B85E3F4F267E22E0000436C8 /* Heroes.json */,
 				AF14507124771A6C00E11E10 /* Category.swift */,
 			);
 			path = Model;
@@ -120,7 +126,7 @@
 		AF7F5964246C24A700EEBFE2 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				AF6F71AB2472E8D2008D3A0D /* Elements */,
+				AF6F71AB2472E8D2008D3A0D /* Components */,
 				AFC20F632469C26E000E7C17 /* ContentView.swift */,
 				AFC3C7B624700DA600BE113D /* ProfileView.swift */,
 				AF7F597A246C6F4000EEBFE2 /* GameView.swift */,
@@ -133,6 +139,8 @@
 		AF7F596D246C2EAD00EEBFE2 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				AF7F5962246C245E00EEBFE2 /* Haptics.swift */,
+				B85E3F4C267E0A21000436C8 /* Bundle+Decodable.swift */,
 				AF7F596E246C2EC300EEBFE2 /* ViewExtension.swift */,
 				AF7F5970246C38C000EEBFE2 /* ColorExtension.swift */,
 			);
@@ -160,11 +168,11 @@
 			children = (
 				AFC20F5F2469C26E000E7C17 /* AppDelegate.swift */,
 				AFC20F612469C26E000E7C17 /* SceneDelegate.swift */,
-				AF7F5962246C245E00EEBFE2 /* Haptics.swift */,
-				AF7F596D246C2EAD00EEBFE2 /* Extensions */,
-				AF7F5964246C24A700EEBFE2 /* Views */,
-				AF6F719D2472A415008D3A0D /* Fonts */,
+				B85E3F4E267E0D28000436C8 /* ViewModel */,
 				AF7F595D246C21D700EEBFE2 /* Model */,
+				AF7F5964246C24A700EEBFE2 /* Views */,
+				AF7F596D246C2EAD00EEBFE2 /* Extensions */,
+				AF6F719D2472A415008D3A0D /* Fonts */,
 				AFC20F652469C275000E7C17 /* Assets.xcassets */,
 				AFC20F6A2469C275000E7C17 /* LaunchScreen.storyboard */,
 				AFC20F6D2469C275000E7C17 /* Info.plist */,
@@ -179,6 +187,15 @@
 				AFC20F682469C275000E7C17 /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		B85E3F4E267E0D28000436C8 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				AF7F5960246C241300EEBFE2 /* Stack.swift */,
+				AFC3C7B4246EF32200BE113D /* Profile.swift */,
+			);
+			path = ViewModel;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -208,7 +225,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 1140;
-				LastUpgradeCheck = 1140;
+				LastUpgradeCheck = 1250;
 				TargetAttributes = {
 					AFC20F5B2469C26E000E7C17 = {
 						CreatedOnToolsVersion = 11.4.1;
@@ -240,7 +257,9 @@
 			files = (
 				AF6F71A82472A953008D3A0D /* OpenSans-Regular.ttf in Resources */,
 				AFC20F6C2469C275000E7C17 /* LaunchScreen.storyboard in Resources */,
+				B85E3F50267E22E0000436C8 /* Heroes.json in Resources */,
 				AFC20F692469C275000E7C17 /* Preview Assets.xcassets in Resources */,
+				B85E3F4B267E09B3000436C8 /* DefaultCards.json in Resources */,
 				AF6F719F2472A429008D3A0D /* Herculanum.ttf in Resources */,
 				AFC20F662469C275000E7C17 /* Assets.xcassets in Resources */,
 			);
@@ -254,6 +273,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				AF26E5BA2475B6F2009D6600 /* CategoryStepperView.swift in Sources */,
+				B85E3F4D267E0A21000436C8 /* Bundle+Decodable.swift in Sources */,
 				AF7F5966246C24B600EEBFE2 /* CardView.swift in Sources */,
 				AF7F596C246C2BC500EEBFE2 /* EditCardView.swift in Sources */,
 				AF7F5971246C38C000EEBFE2 /* ColorExtension.swift in Sources */,
@@ -319,6 +339,7 @@
 				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
 				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
@@ -379,6 +400,7 @@
 				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
 				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;

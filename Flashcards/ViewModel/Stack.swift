@@ -9,11 +9,9 @@ import Foundation
 
 class Stack: ObservableObject {
     @Published var cards: [Card]
-    static let saveKey = "Cards"
 
     init() {
-        self.cards = []
-        
+        self.cards = Bundle.main.decode("DefaultCards.json")
         if let data = loadFile() {
             if let decoded = try? JSONDecoder().decode([Card].self, from: data) {
                 self.cards = decoded
@@ -27,7 +25,26 @@ class Stack: ObservableObject {
         save()
     }
     
-    func save() {
+    func editCard(id: UUID, question: String, answer: String, category: Int) {
+        if let index = cards.firstIndex(where: { ($0.id == id)}) {
+            cards[index].question = question
+            cards[index].answer = answer
+            cards[index].category = category
+            save()
+        }
+    }
+    
+    func removeCard(with id: UUID) {
+        if let index = cards.firstIndex(where: { ($0.id == id)}) {
+            cards.remove(at: index)
+            save()
+        }
+    }
+  
+    // MARK: - Data consistency
+    static let saveKey = "Saved"
+    
+    private func save() {
         if let encoded = try? JSONEncoder().encode(cards) {
             saveFile(data: encoded)
         }
@@ -43,7 +60,7 @@ class Stack: ObservableObject {
         }
     }
     
-    func loadFile() -> Data? {
+    private func loadFile() -> Data? {
         let url = getDocumentsDirectory().appendingPathComponent(Self.saveKey)
         
         if let data = try? Data(contentsOf: url) {

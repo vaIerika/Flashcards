@@ -14,7 +14,7 @@ enum SheetType {
 struct ContentView: View {
     @ObservedObject var stack = Stack()
     @State private var chosenCards: [Card] = []
-    @State private var profile = Profile()
+    @ObservedObject var profile = Profile()
     
     @State private var sheetType = SheetType.editCards
     @State private var showingSheet = false
@@ -102,7 +102,7 @@ struct ContentView: View {
                             }
                         }
                         Spacer()
-                        CategoryChoiceView(categories: profile.categories, chosenCards: $chosenCards, gameMode: $gameMode, updateView: startGame)
+                        CategoryChoiceView(stack: stack, categories: profile.categories, chosenCards: $chosenCards, gameMode: $gameMode, updateView: startGame)
                     }
                     .font(.custom("OpenSans-Regular", size: 15))
                     .foregroundColor(Color.grapeDrk)
@@ -115,15 +115,13 @@ struct ContentView: View {
             }
             .padding(20)
         }
-        .sheet(isPresented: $showingSheet, onDismiss: saveData) {
+        .sheet(isPresented: $showingSheet) {
             if self.sheetType == .editCards {
-                CardsListView(profile: self.$profile)
+                CardsListView(profile: profile)
             } else if self.sheetType == .profile {
-                ProfileView(profile: self.$profile)
+                ProfileView(profile: profile)
             }
         }
-        .onAppear(perform: loadData)
-        .onAppear(perform: addExampleCards)
     }
     
     func showSheet(type: SheetType) {
@@ -141,10 +139,7 @@ struct ContentView: View {
     }
     
     func updateStatistics() {
-        profile.correctCards += correctCards
-        profile.playedRounds += 1
-        profile.score += earnedPoints
-        saveData()
+        profile.finishRound(correct: correctCards, earnedPoints: earnedPoints)
     }
     
     func finishGame() {
@@ -159,42 +154,6 @@ struct ContentView: View {
             if !timerIsActive {
                 gameMode = false
                 chosenCards.removeAll()
-            }
-        }
-    }
-    
-    func loadData() {
-        let filename = getDocumentsDiretory().appendingPathComponent("ProfileData")
-        
-        do {
-            let data = try Data(contentsOf: filename)
-            profile = try JSONDecoder().decode(Profile.self, from: data)
-        } catch {
-            print("Unable to load saved profile data")
-        }
-    }
-    
-    func saveData() {
-        do {
-            let filename = getDocumentsDiretory().appendingPathComponent("ProfileData")
-            let data = try JSONEncoder().encode(self.profile)
-            try data.write(to: filename, options: [.atomic, .completeFileProtection])
-        } catch {
-            print("Unable to save profile data")
-        }
-    }
-    
-    func getDocumentsDiretory() -> URL {
-        let paths = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
-        return paths[0]
-    }
-    
-    // For testing
-    func addExampleCards() {
-        if stack.cards.isEmpty {
-            let array: [Card] = [.card1, .card2, .card3, .card4, .card5, .card6, .card7, .card8, .card9, .card10, .card11, .card12, .card13, .card14, .card15, .card16, .card17, .card18, .card19, .card20]
-            for card in array {
-                stack.add(card: card)
             }
         }
     }

@@ -10,7 +10,8 @@ import SwiftUI
 struct CardsListView: View {
     @Environment(\.presentationMode) var presentationMode
     @ObservedObject var stack = Stack()
-    @Binding var profile: Profile
+    //@Binding var profile: Profile
+    @ObservedObject var profile: Profile
     
     @State private var newQuestion = ""
     @State private var newAnswer = ""
@@ -206,7 +207,7 @@ struct CardsListView: View {
                     .buttonStyle(PlainButtonStyle())
                     .sheet(isPresented: $showingCategorySettings, content: {
                         if self.filter != nil {
-                            CategorySettings(profile: self.$profile, category: self.filter!)
+                            CategorySettings(profile: profile, category: self.filter!)
                         }
                     })
                     .environmentObject(stack)
@@ -290,11 +291,8 @@ struct CardsListView: View {
         if let index = Array(offsets).first {
             let id = shownCards[index].id
             
-            if let index = stack.cards.firstIndex(where: { ($0.id == id)}) {
-                stack.cards.remove(at: index)
-                stack.save()
-            }
-            
+            stack.removeCard(with: id)
+
             self.shownCards.remove(atOffsets: offsets)
         }
     }
@@ -302,7 +300,7 @@ struct CardsListView: View {
 
 struct CardsListView_Previews: PreviewProvider {
     static var previews: some View {
-        CardsListView(profile: Binding.constant(Profile()))
+        CardsListView(profile: Profile())
             .previewLayout(.fixed(width: 568, height: 320))
     }
 }

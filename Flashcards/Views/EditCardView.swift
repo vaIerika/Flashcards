@@ -18,13 +18,18 @@ struct EditCardView: View {
         return 0
     }
     
+    // TODO: Change for card 
+    @State private var question = ""
+    @State private var answer = ""
+    @State private var category = 0
+
     var body: some View {
         VStack {
             HStack {
                 Spacer()
                 Button(action: {
-                    self.stack.save()
-                    self.presentationMode.wrappedValue.dismiss()
+                    stack.editCard(id: id, question: question, answer: answer, category: category)
+                    presentationMode.wrappedValue.dismiss()
                 }) {
                     Text("Save")
                         .font(.custom("OpenSans-Regular", size: 15))
@@ -33,11 +38,14 @@ struct EditCardView: View {
             }
             .padding(.bottom, 20)
             
-            TextFieldView(description: "Question", value: $stack.cards[index].question)
-            TextFieldView(description: "Answer", value:  $stack.cards[index].answer)
+//            TextFieldView(description: "Question", value: $stack.cards[index].question)
+//            TextFieldView(description: "Answer", value:  $stack.cards[index].answer)
+            TextFieldView(description: "Question", value: $question)
+            TextFieldView(description: "Answer", value:  $answer)
             
             HStack {
-                CategoryStepperView(category: $stack.cards[index].category)
+                //CategoryStepperView(category: $stack.cards[index].category)
+                CategoryStepperView(category: $category)
                 Spacer()
             }
             Spacer()

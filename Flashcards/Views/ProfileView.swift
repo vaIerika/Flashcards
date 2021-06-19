@@ -9,7 +9,8 @@ import SwiftUI
 
 struct ProfileView: View {
     @Environment(\.presentationMode) var presentationMode
-    @Binding var profile: Profile
+    //@Binding var profile: Profile
+    @ObservedObject var profile: Profile
     
     let heroes: [Hero] = [.hermes, .apollo, .artemis, .dionysus, .aphrodite, .demeter, .ares, .athena, .poseidon, .hera, .hades, .zeus]
     @State private var chosenHero = ""
@@ -118,7 +119,7 @@ struct ProfileView_Previews: PreviewProvider {
     static var profile = Profile()
     
     static var previews: some View {
-        ProfileView(profile: Binding.constant(profile))
+        ProfileView(profile: profile)
             .previewLayout(.fixed(width: 896, height: 414))
     }
 }
