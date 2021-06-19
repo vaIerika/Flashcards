@@ -8,7 +8,7 @@
 import Foundation
 
 struct Hero: Codable, Identifiable {
-    let id = UUID()
+    var id: String { name }
     var name: String
     var description: String
     

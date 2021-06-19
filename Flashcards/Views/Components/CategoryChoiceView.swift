@@ -9,7 +9,7 @@ import SwiftUI
 
 struct CategoryChoiceView: View {
     @Environment(\.presentationMode) var presentationMode
-    @ObservedObject var stack = Stack()
+    @ObservedObject var stack: Stack
     
     var categories: [Category]
     @Binding var chosenCards: [Card]
@@ -118,7 +118,7 @@ struct CategoryChoiceView_Previews: PreviewProvider {
     static func example() { }
     
     static var previews: some View {
-        CategoryChoiceView(categories: [Category.navy], chosenCards: Binding.constant(Stack().cards), gameMode: Binding.constant(false), updateView: example)
+        CategoryChoiceView(stack: Stack(), categories: [Category.navy], chosenCards: Binding.constant(Stack().cards), gameMode: Binding.constant(false), updateView: example)
             .previewLayout(.fixed(width: 300, height: 300))
     }
 }

@@ -10,7 +10,8 @@ import SwiftUI
 struct CategorySettings: View {
     @Environment(\.presentationMode) var presentationMode
     
-    @Binding var profile: Profile
+    //@Binding var profile: Profile
+    @ObservedObject var profile: Profile
     var category: Int
     
     let images = ["pencil.and.outline", "book", "pencil.tip", "map", "pin", "star", "heart", "helm", "ellipses.bubble", "paintbrush", "x.squareroot", "rosette", "flag", "safari"]
@@ -69,7 +70,7 @@ struct CategorySettings: View {
 
 struct CategorySettings_Previews: PreviewProvider {
     static var previews: some View {
-        CategorySettings(profile: Binding.constant(Profile()), category: 5)
+        CategorySettings(profile: Profile(), category: 5)
             .previewLayout(.fixed(width: 896, height: 414))
     }
 }
