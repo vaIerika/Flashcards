@@ -9,20 +9,8 @@ import SwiftUI
 
 struct CardsListView: View {
     @Environment(\.presentationMode) var presentationMode
-<<<<<<< Updated upstream
-    @ObservedObject var stack = Stack()
-<<<<<<< HEAD
-    @Binding var profile: Profile
-=======
-    //@ObservedObject var stack = Stack()
     @EnvironmentObject var stack: Stack
-    //@Binding var profile: Profile
     @ObservedObject var profile: Profile
->>>>>>> Stashed changes
-=======
-    //@Binding var profile: Profile
-    @ObservedObject var profile: Profile
->>>>>>> 7a45372d1aa1343d9bf7434820b8b5c7efe0bb59
     
     @State private var newQuestion = ""
     @State private var newAnswer = ""
@@ -315,16 +303,8 @@ struct CardsListView: View {
 
 struct CardsListView_Previews: PreviewProvider {
     static var previews: some View {
-<<<<<<< HEAD
-<<<<<<< Updated upstream
-        CardsListView(profile: Binding.constant(Profile()))
-=======
         CardsListView(profile: Profile())
             .environmentObject(Stack())
->>>>>>> Stashed changes
-=======
-        CardsListView(profile: Profile())
->>>>>>> 7a45372d1aa1343d9bf7434820b8b5c7efe0bb59
             .previewLayout(.fixed(width: 568, height: 320))
     }
 }

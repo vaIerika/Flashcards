@@ -9,7 +9,6 @@ import SwiftUI
 
 struct HeroesView: View {
     @Environment(\.presentationMode) var presentationMode
-    //@Binding var profile: Profile
     @ObservedObject var profile: Profile
     
     let heroes: [Hero] = [.hermes, .apollo, .artemis, .dionysus, .aphrodite, .demeter, .ares, .athena, .poseidon, .hera, .hades, .zeus]
@@ -119,15 +118,7 @@ struct HeroesView_Previews: PreviewProvider {
     static var profile = Profile()
     
     static var previews: some View {
-<<<<<<< HEAD:Flashcards/Views/HeroesView.swift
-<<<<<<< Updated upstream:Flashcards/Views/ProfileView.swift
-        ProfileView(profile: Binding.constant(profile))
-=======
         HeroesView(profile: profile)
->>>>>>> Stashed changes:Flashcards/Views/HeroesView.swift
-=======
-        ProfileView(profile: profile)
->>>>>>> 7a45372d1aa1343d9bf7434820b8b5c7efe0bb59:Flashcards/Views/ProfileView.swift
             .previewLayout(.fixed(width: 896, height: 414))
     }
 }

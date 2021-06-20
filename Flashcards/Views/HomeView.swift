@@ -51,7 +51,6 @@ struct HomeView: View {
 
 struct HomeView_Previews: PreviewProvider {
     static var previews: some View {
-        //HomeView(stack: Stack(), profile: Profile(), gameMode: .constant(false), chosenCards: .constant([Card.example]), sheetType: .constant(.profile), showingSheet: .constant(false)) { }
         HomeView(profile: Profile(), gameMode: .constant(false), chosenCards: .constant([Card.example]), sheetType: .constant(.profile), showingSheet: .constant(false)) { }
             .environmentObject(Stack())
             .previewLayout(.fixed(width: 812, height: 375))

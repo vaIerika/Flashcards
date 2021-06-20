@@ -9,7 +9,6 @@ import SwiftUI
 
 struct CardCategoriesView: View {
     @EnvironmentObject var stack: Stack
-   // var cards: [Card]
     var categories: [Category]
     var startGame: (Set<Category>) -> Void
     
@@ -60,7 +59,6 @@ struct CardCategoriesView: View {
 
 struct CardCategoriesView_Previews: PreviewProvider {
     static var previews: some View {
-        //CardCategoriesView(cards: Stack().cards, categories: Profile().categories) { _ in
         CardCategoriesView(categories: Profile().categories) { _ in
             
         }
