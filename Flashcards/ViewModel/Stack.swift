@@ -29,7 +29,7 @@ class Stack: ObservableObject {
         if let index = cards.firstIndex(where: { ($0.id == id)}) {
             cards[index].question = question
             cards[index].answer = answer
-            cards[index].category = category
+            cards[index].categoryId = category
             save()
         }
     }
@@ -66,7 +66,6 @@ class Stack: ObservableObject {
         if let data = try? Data(contentsOf: url) {
             return data
         }
-        
         return nil
     }
     

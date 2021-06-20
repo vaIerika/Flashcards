@@ -68,47 +68,8 @@ struct ContentView: View {
             
             ZStack {
                 if !gameMode  {
-                    HStack(alignment: .bottom) {
-                        VStack {
-                            Button(action: {
-                                self.sheetType = SheetType.profile
-                                self.showingSheet = true
-                            }) {
-                                VStack {
-                                    Image(profile.hero.name.lowercased())
-                                        .renderingMode(.original)
-                                        .resizable()
-                                        .scaledToFill()
-                                        .frame(width: 120, height: 120)
-                                        .padding(.bottom, 17)
-                                    Text(profile.hero.name.uppercased())
-                                        .font(.custom("Herculanum", size: 20))
-                                        .fixedSize(horizontal: true, vertical: false)
-                                        .padding(.bottom, 10)
-                                    Text(profile.hero.description)
-                                        .multilineTextAlignment(.center)
-                                        .fixedSize(horizontal: true, vertical: true)
-                                        .opacity(0.6)
-                                }
-                                .foregroundColor(Color.grapeDrk)
-                            }
-                            .font(.custom("OpenSans-Regular", size: 13))
-                            .padding(.bottom, 18)
-                            
-                            HStack(spacing: 17) {
-                                PictogramView(number: profile.level, label: "level")
-                                PictogramView(number: profile.score, label: "points")
-                                PictogramView(number: stack.cards.count, label: "cards")
-                            }
-                        }
-                        Spacer()
-                        CategoryChoiceView(stack: stack, categories: profile.categories, chosenCards: $chosenCards, gameMode: $gameMode, updateView: startGame)
-                    }
-                    .font(.custom("OpenSans-Regular", size: 15))
-                    .foregroundColor(Color.grapeDrk)
-                    .padding(.horizontal, 15)
-                    .padding(.vertical, 10)
-                    
+                    HomeView(profile: profile, gameMode: $gameMode, chosenCards: $chosenCards, sheetType: $sheetType, showingSheet: $showingSheet, startGame: startGame)
+                        .environmentObject(stack)
                 } else if gameMode {
                     GameView(chosenCards: $chosenCards, retryIncorrectCards: $retryIncorrectCards, gameMode: $gameMode, timerIsActive: $timerIsActive, correctCards: $correctCards, incorrectCards: $incorrectCards, earnedPoints: $earnedPoints, finishGame: finishGame)
                 }
@@ -118,8 +79,9 @@ struct ContentView: View {
         .sheet(isPresented: $showingSheet) {
             if self.sheetType == .editCards {
                 CardsListView(profile: profile)
+                    .environmentObject(stack)
             } else if self.sheetType == .profile {
-                ProfileView(profile: profile)
+                HeroesView(profile: profile)
             }
         }
     }

@@ -1,5 +1,5 @@
 //
-//  ProfileView.swift
+//  HeroesView.swift
 //  Flashcards
 //
 //  Created by Valerie 👩🏼‍💻 on 16/05/2020.
@@ -7,9 +7,8 @@
 
 import SwiftUI
 
-struct ProfileView: View {
+struct HeroesView: View {
     @Environment(\.presentationMode) var presentationMode
-    //@Binding var profile: Profile
     @ObservedObject var profile: Profile
     
     let heroes: [Hero] = [.hermes, .apollo, .artemis, .dionysus, .aphrodite, .demeter, .ares, .athena, .poseidon, .hera, .hades, .zeus]
@@ -21,7 +20,7 @@ struct ProfileView: View {
                 HStack {
                     Text("Score:")
                         .foregroundColor(.secondary)
-                    ScoreView(number: profile.score)
+                    PrettyNumberView(number: profile.score)
                         .foregroundColor(Color.goldDrk)
                     Spacer()
                     
@@ -115,11 +114,11 @@ struct ProfileView: View {
     }
 }
 
-struct ProfileView_Previews: PreviewProvider {
+struct HeroesView_Previews: PreviewProvider {
     static var profile = Profile()
     
     static var previews: some View {
-        ProfileView(profile: profile)
+        HeroesView(profile: profile)
             .previewLayout(.fixed(width: 896, height: 414))
     }
 }
