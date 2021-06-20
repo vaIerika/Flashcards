@@ -1,0 +1,50 @@
+[
+  {
+    "name": "Hermes",
+    "description": "God's messenger and guide \nof dead souls into the Underground"
+  },
+  {
+    "name": "Apollo",
+    "description": "God of the Sun, music, poetry \nand even archery"
+  },
+  {
+    "name": "Artemis",
+    "description": "Goddess of hunt, animals, \nnature, virility and the Moon"
+  },
+  {
+    "name": "Dionysus",
+    "description": "God of wine, fun, party, \nfestivity and theater"
+  },
+  {
+    "name": "Aphrodite",
+    "description": "Goddess of love, pleasure, \nbeauty, passion and procreation"
+  },
+  {
+    "name": "Demeter",
+    "description": "Goddess of the harvest, agriculture \nand the fertility of the Earth"
+  },
+  {
+    "name": "Ares",
+    "description": "God of war, personification \nof sheer brudality"
+  },
+  {
+    "name": "Athena",
+    "description": "Goddess of heroes, intelligence, \nwisdom, handicrafy"
+  },
+  {
+    "name": "Poseidon",
+    "description": "God of the sea, storms, \nearthquake and horses"
+  },
+  {
+    "name": "Hera",
+    "description": "Goddess of women, marrige, \nfamily and childbirth"
+  },
+  {
+    "name": "Hades",
+    "description": "God of the dead, \nthe king of the Underworld"
+  },
+  {
+    "name": "Zeus",
+    "description": "Ruler of the gods and people, \ndonor of life and human destiny"
+  }
+]

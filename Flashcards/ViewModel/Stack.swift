@@ -9,11 +9,9 @@ import Foundation
 
 class Stack: ObservableObject {
     @Published var cards: [Card]
-    static let saveKey = "Cards"
 
     init() {
-        self.cards = []
-        
+        self.cards = Bundle.main.decode("DefaultCards.json")
         if let data = loadFile() {
             if let decoded = try? JSONDecoder().decode([Card].self, from: data) {
                 self.cards = decoded
@@ -27,14 +25,21 @@ class Stack: ObservableObject {
         save()
     }
     
+<<<<<<< HEAD:Flashcards/Model/Stack.swift
 <<<<<<< Updated upstream:Flashcards/Model/Stack.swift
     func save() {
 =======
+=======
+>>>>>>> 7a45372d1aa1343d9bf7434820b8b5c7efe0bb59:Flashcards/ViewModel/Stack.swift
     func editCard(id: UUID, question: String, answer: String, category: Int) {
         if let index = cards.firstIndex(where: { ($0.id == id)}) {
             cards[index].question = question
             cards[index].answer = answer
+<<<<<<< HEAD:Flashcards/Model/Stack.swift
             cards[index].categoryId = category
+=======
+            cards[index].category = category
+>>>>>>> 7a45372d1aa1343d9bf7434820b8b5c7efe0bb59:Flashcards/ViewModel/Stack.swift
             save()
         }
     }
@@ -50,7 +55,10 @@ class Stack: ObservableObject {
     static let saveKey = "Saved"
     
     private func save() {
+<<<<<<< HEAD:Flashcards/Model/Stack.swift
 >>>>>>> Stashed changes:Flashcards/ViewModel/Stack.swift
+=======
+>>>>>>> 7a45372d1aa1343d9bf7434820b8b5c7efe0bb59:Flashcards/ViewModel/Stack.swift
         if let encoded = try? JSONEncoder().encode(cards) {
             saveFile(data: encoded)
         }
@@ -66,7 +74,7 @@ class Stack: ObservableObject {
         }
     }
     
-    func loadFile() -> Data? {
+    private func loadFile() -> Data? {
         let url = getDocumentsDirectory().appendingPathComponent(Self.saveKey)
         
         if let data = try? Data(contentsOf: url) {
