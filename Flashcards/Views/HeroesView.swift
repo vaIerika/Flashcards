@@ -1,5 +1,5 @@
 //
-//  ProfileView.swift
+//  HeroesView.swift
 //  Flashcards
 //
 //  Created by Valerie 👩🏼‍💻 on 16/05/2020.
@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct ProfileView: View {
+struct HeroesView: View {
     @Environment(\.presentationMode) var presentationMode
     @Binding var profile: Profile
     
@@ -20,7 +20,7 @@ struct ProfileView: View {
                 HStack {
                     Text("Score:")
                         .foregroundColor(.secondary)
-                    ScoreView(number: profile.score)
+                    PrettyNumberView(number: profile.score)
                         .foregroundColor(Color.goldDrk)
                     Spacer()
                     
@@ -114,11 +114,15 @@ struct ProfileView: View {
     }
 }
 
-struct ProfileView_Previews: PreviewProvider {
+struct HeroesView_Previews: PreviewProvider {
     static var profile = Profile()
     
     static var previews: some View {
+<<<<<<< Updated upstream:Flashcards/Views/ProfileView.swift
         ProfileView(profile: Binding.constant(profile))
+=======
+        HeroesView(profile: profile)
+>>>>>>> Stashed changes:Flashcards/Views/HeroesView.swift
             .previewLayout(.fixed(width: 896, height: 414))
     }
 }

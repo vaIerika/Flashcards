@@ -11,10 +11,20 @@ struct Card: Codable, Identifiable, Hashable {
     let id = UUID()
     var question: String
     var answer: String
-    var category: Int
+    var categoryId: Int
     
+<<<<<<< Updated upstream
+=======
+    init(id: UUID = UUID(), question: String, answer: String, categoryId: Int) {
+        self.id = id
+        self.question = question
+        self.answer = answer
+        self.categoryId = categoryId
+    }
+    
+>>>>>>> Stashed changes
     static var example: Card {
-        Card(question: "Egypt and Syria united and renamed United Arab Republic (UAR)", answer: "1958", category: 0)
+        Card(question: "Egypt and Syria united and renamed United Arab Republic (UAR)", answer: "1958", categoryId: 0)
     }
     static let card1 = Card(question: "In Pride and Prejudice, who does Jane Bennet marry?", answer: "Charles Bingley", category: 0)
     static let card2 = Card(question: "What is the name of Harper Lee’s second novel, published in 2015?", answer: "Go Set a Watchman", category: 0)

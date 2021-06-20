@@ -68,6 +68,7 @@ struct ContentView: View {
             
             ZStack {
                 if !gameMode  {
+<<<<<<< Updated upstream
                     HStack(alignment: .bottom) {
                         VStack {
                             Button(action: {
@@ -109,6 +110,10 @@ struct ContentView: View {
                     .padding(.horizontal, 15)
                     .padding(.vertical, 10)
                     
+=======
+                    HomeView(profile: profile, gameMode: $gameMode, chosenCards: $chosenCards, sheetType: $sheetType, showingSheet: $showingSheet, startGame: startGame)
+                        .environmentObject(stack)
+>>>>>>> Stashed changes
                 } else if gameMode {
                     GameView(chosenCards: $chosenCards, retryIncorrectCards: $retryIncorrectCards, gameMode: $gameMode, timerIsActive: $timerIsActive, correctCards: $correctCards, incorrectCards: $incorrectCards, earnedPoints: $earnedPoints, finishGame: finishGame)
                 }
@@ -117,9 +122,16 @@ struct ContentView: View {
         }
         .sheet(isPresented: $showingSheet, onDismiss: saveData) {
             if self.sheetType == .editCards {
+<<<<<<< Updated upstream
                 CardsListView(profile: self.$profile)
             } else if self.sheetType == .profile {
                 ProfileView(profile: self.$profile)
+=======
+                CardsListView(profile: profile)
+                    .environmentObject(stack)
+            } else if self.sheetType == .profile {
+                HeroesView(profile: profile)
+>>>>>>> Stashed changes
             }
         }
         .onAppear(perform: loadData)

@@ -27,7 +27,30 @@ class Stack: ObservableObject {
         save()
     }
     
+<<<<<<< Updated upstream:Flashcards/Model/Stack.swift
     func save() {
+=======
+    func editCard(id: UUID, question: String, answer: String, category: Int) {
+        if let index = cards.firstIndex(where: { ($0.id == id)}) {
+            cards[index].question = question
+            cards[index].answer = answer
+            cards[index].categoryId = category
+            save()
+        }
+    }
+    
+    func removeCard(with id: UUID) {
+        if let index = cards.firstIndex(where: { ($0.id == id)}) {
+            cards.remove(at: index)
+            save()
+        }
+    }
+  
+    // MARK: - Data consistency
+    static let saveKey = "Saved"
+    
+    private func save() {
+>>>>>>> Stashed changes:Flashcards/ViewModel/Stack.swift
         if let encoded = try? JSONEncoder().encode(cards) {
             saveFile(data: encoded)
         }
@@ -49,7 +72,6 @@ class Stack: ObservableObject {
         if let data = try? Data(contentsOf: url) {
             return data
         }
-        
         return nil
     }
     

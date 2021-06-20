@@ -9,31 +9,31 @@ import SwiftUI
 
 struct PictogramView: View {
     var number: Int
-    var label: String
+    var type: PictogramType
+    private var label: String { type.rawValue }
+    
+    enum PictogramType: String { case level, points, cards }
     
     var body: some View {
         VStack(spacing: 8) {
-            ScoreView(number: number)
-                .font(.custom("Herculanum", size: 27))
-                .fixedSize(horizontal: true, vertical: false)
-                .foregroundColor(Color.grapeDrk)
+            PrettyNumberView(number: number)
+                .fontHerculanum(.largeTitle)
             Text(label)
-                .font(.custom("OpenSans-Regular", size: 13))
-                .fixedSize(horizontal: true, vertical: false)
-                .foregroundColor(Color.grapeDrk)
+                .fontOpenSansModifier(.footnote)
                 .opacity(0.6)
                 .lineLimit(1)
         }
+        .fixedSize(horizontal: true, vertical: false)
     }
 }
 
-struct ScoreView: View {
+struct PrettyNumberView: View {
     var number: Int
     
     var body: some View {
         HStack {
             if number >= 1000 {
-                Text("\(Double(number)/1000, specifier: "%g")K")
+                Text("\(Double(number) / 1000, specifier: "%g")K")
             } else {
                 Text("\(number)")
             }
@@ -43,7 +43,11 @@ struct ScoreView: View {
 
 struct PictogramView_Previews: PreviewProvider {
     static var previews: some View {
-        PictogramView(number: 1, label: "points")
+        HStack(spacing: 40) {
+            PictogramView(number: 1, type: .level)
+            PictogramView(number: 54, type: .cards)
+            PictogramView(number: 3000, type: .points)
+        }
     }
 }
 

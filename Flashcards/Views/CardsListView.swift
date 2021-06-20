@@ -9,8 +9,15 @@ import SwiftUI
 
 struct CardsListView: View {
     @Environment(\.presentationMode) var presentationMode
+<<<<<<< Updated upstream
     @ObservedObject var stack = Stack()
     @Binding var profile: Profile
+=======
+    //@ObservedObject var stack = Stack()
+    @EnvironmentObject var stack: Stack
+    //@Binding var profile: Profile
+    @ObservedObject var profile: Profile
+>>>>>>> Stashed changes
     
     @State private var newQuestion = ""
     @State private var newAnswer = ""
@@ -81,23 +88,27 @@ struct CardsListView: View {
                         HStack(spacing: 25) {
                             ForEach(profile.categories) { category in
                                 Button(action: {
-                                    self.filter = category.color
+                                    //self.filter = category.color
+                                    filter = category.id
                                     self.displayCards()
                                 }) {
                                     ZStack {
                                         RoundedRectangle(cornerRadius: 10)
-                                            .fill(Color.gradients[category.color])
+                                            .fill(category.color)
+                                            //.fill(Color.gradients[category.color])
                                             .frame(width: 50, height: 50)
                                         
                                         Image(systemName: category.image)
                                             .foregroundColor(.white)
                                     }
                                     .onTapGesture {
-                                        self.filter = category.color
+                                        //self.filter = category.color
+                                        filter = category.id
                                         self.displayCards()
                                     }
                                     .onLongPressGesture {
-                                        self.filter = category.color
+                                        //self.filter = category.color
+                                        filter = category.id
                                         self.showingCategorySettings = true
                                     }
                                 }
@@ -177,7 +188,7 @@ struct CardsListView: View {
                                 NavigationLink(destination: EditCardView(id: card.id)) {
                                     HStack {
                                         RoundedRectangle(cornerRadius: 10)
-                                            .fill(Color.gradients[card.category])
+                                            .fill(Color.gradients[card.categoryId])
                                             .frame(width: 35, height: 35)
                                             .padding(.leading, 5)
                                         
@@ -233,31 +244,31 @@ struct CardsListView: View {
             switch filter {
             case 0:
                 for card in stack.cards {
-                    if card.category == 0 {
+                    if card.categoryId == 0 {
                         shownCards.append(card)
                     }
                 }
             case 1:
                 for card in stack.cards {
-                    if card.category == 1 {
+                    if card.categoryId == 1 {
                         shownCards.append(card)
                     }
                 }
             case 2:
                 for card in stack.cards {
-                    if card.category == 2 {
+                    if card.categoryId == 2 {
                         shownCards.append(card)
                     }
                 }
             case 3:
                 for card in stack.cards {
-                    if card.category == 3 {
+                    if card.categoryId == 3 {
                         shownCards.append(card)
                     }
                 }
             case 4:
                 for card in stack.cards {
-                    if card.category == 4 {
+                    if card.categoryId == 4 {
                         shownCards.append(card)
                     }
                 }
@@ -278,7 +289,7 @@ struct CardsListView: View {
         let trimmedAnswer = newAnswer.trimmingCharacters(in: .whitespaces)
         guard trimmedQuestion.isEmpty == false && trimmedAnswer.isEmpty == false else { return }
         
-        let card = Card(question: trimmedQuestion, answer: trimmedAnswer, category: newCategory)
+        let card = Card(question: trimmedQuestion, answer: trimmedAnswer, categoryId: newCategory)
         stack.add(card: card)
         
         newQuestion = ""
@@ -302,7 +313,12 @@ struct CardsListView: View {
 
 struct CardsListView_Previews: PreviewProvider {
     static var previews: some View {
+<<<<<<< Updated upstream
         CardsListView(profile: Binding.constant(Profile()))
+=======
+        CardsListView(profile: Profile())
+            .environmentObject(Stack())
+>>>>>>> Stashed changes
             .previewLayout(.fixed(width: 568, height: 320))
     }
 }
