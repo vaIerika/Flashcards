@@ -23,7 +23,6 @@
 		B821B8D6267F9A68002713C3 /* Category.swift in Sources */ = {isa = PBXBuildFile; fileRef = B821B8D5267F9A68002713C3 /* Category.swift */; };
 		B821B8DA267F9A8F002713C3 /* DefaultCards.json in Resources */ = {isa = PBXBuildFile; fileRef = B821B8D9267F9A8F002713C3 /* DefaultCards.json */; };
 		B821B8DC267F9AC2002713C3 /* Hero.swift in Sources */ = {isa = PBXBuildFile; fileRef = B821B8DB267F9AC2002713C3 /* Hero.swift */; };
-		B821B8DE267F9ACA002713C3 /* Heroes.json in Resources */ = {isa = PBXBuildFile; fileRef = B821B8DD267F9ACA002713C3 /* Heroes.json */; };
 		B821B8EB267F9AE9002713C3 /* ResultsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B821B8DF267F9AE8002713C3 /* ResultsView.swift */; };
 		B821B8EC267F9AE9002713C3 /* CardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B821B8E0267F9AE9002713C3 /* CardView.swift */; };
 		B821B8ED267F9AE9002713C3 /* CategoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B821B8E1267F9AE9002713C3 /* CategoryView.swift */; };
@@ -65,7 +64,6 @@
 		B821B8D5267F9A68002713C3 /* Category.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Category.swift; path = "../../../../../../Downloads/Flashcards-master/Flashcards/Model/Category.swift"; sourceTree = "<group>"; };
 		B821B8D9267F9A8F002713C3 /* DefaultCards.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = DefaultCards.json; path = ../../../../../../.Trash/DefaultCards.json; sourceTree = "<group>"; };
 		B821B8DB267F9AC2002713C3 /* Hero.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Hero.swift; sourceTree = "<group>"; };
-		B821B8DD267F9ACA002713C3 /* Heroes.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Heroes.json; sourceTree = "<group>"; };
 		B821B8DF267F9AE8002713C3 /* ResultsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResultsView.swift; sourceTree = "<group>"; };
 		B821B8E0267F9AE9002713C3 /* CardView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CardView.swift; sourceTree = "<group>"; };
 		B821B8E1267F9AE9002713C3 /* CategoryView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CategoryView.swift; sourceTree = "<group>"; };
@@ -133,7 +131,6 @@
 				B821B8D5267F9A68002713C3 /* Category.swift */,
 				B821B8DB267F9AC2002713C3 /* Hero.swift */,
 				B821B8D9267F9A8F002713C3 /* DefaultCards.json */,
-				B821B8DD267F9ACA002713C3 /* Heroes.json */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -275,7 +272,6 @@
 			files = (
 				AF6F71A82472A953008D3A0D /* OpenSans-Regular.ttf in Resources */,
 				AFC20F6C2469C275000E7C17 /* LaunchScreen.storyboard in Resources */,
-				B821B8DE267F9ACA002713C3 /* Heroes.json in Resources */,
 				B821B8DA267F9A8F002713C3 /* DefaultCards.json in Resources */,
 				AFC20F692469C275000E7C17 /* Preview Assets.xcassets in Resources */,
 				AF6F719F2472A429008D3A0D /* Herculanum.ttf in Resources */,

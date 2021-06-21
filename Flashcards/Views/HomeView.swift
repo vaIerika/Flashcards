@@ -10,19 +10,15 @@ import SwiftUI
 struct HomeView: View {
     @EnvironmentObject var stack: Stack
     var profile: Profile
-    @Binding var gameMode: Bool
     @Binding var chosenCards: [Card]
-    @Binding var sheetType: SheetType
-    @Binding var showingSheet: Bool
-    
     var startGame: () -> Void
-    
+    var showSheet: (SheetType) -> Void
+
     var body: some View {
         HStack(alignment: .bottom) {
             VStack {
                 UserHeroView(hero: profile.hero) {
-                    sheetType = SheetType.profile
-                    showingSheet = true
+                    showSheet(.profile)
                 }
                 HStack(spacing: 17) {
                     PictogramView(number: profile.level, type: .level)
@@ -32,15 +28,11 @@ struct HomeView: View {
             }
             Spacer()
             CardCategoriesView(categories: profile.categories) { chosenCategories in
-                
                 chosenCards = []
                 chosenCategories.forEach { category in
                     chosenCards += stack.cards.filter { $0.categoryId == category.id }
                 }
-                if !chosenCards.isEmpty {
-                    gameMode = true
-                    startGame()
-                }
+                startGame()
             }
             .environmentObject(stack)
         }
@@ -50,8 +42,12 @@ struct HomeView: View {
 }
 
 struct HomeView_Previews: PreviewProvider {
+    
     static var previews: some View {
-        HomeView(profile: Profile(), gameMode: .constant(false), chosenCards: .constant([Card.example]), sheetType: .constant(.profile), showingSheet: .constant(false)) { }
+        func showProfile(_ type: SheetType) -> Void { }
+        func startGame() -> Void { }
+        
+        return HomeView(profile: Profile(), chosenCards: .constant([Card.example]), startGame: startGame) { _ in }
             .environmentObject(Stack())
             .previewLayout(.fixed(width: 812, height: 375))
     }

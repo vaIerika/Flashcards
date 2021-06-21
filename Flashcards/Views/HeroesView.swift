@@ -10,8 +10,6 @@ import SwiftUI
 struct HeroesView: View {
     @Environment(\.presentationMode) var presentationMode
     @ObservedObject var profile: Profile
-    
-    let heroes: [Hero] = [.hermes, .apollo, .artemis, .dionysus, .aphrodite, .demeter, .ares, .athena, .poseidon, .hera, .hades, .zeus]
     @State private var chosenHero = ""
     
     var body: some View {
@@ -25,7 +23,7 @@ struct HeroesView: View {
                     Spacer()
                     
                     Button(action: {
-                        self.presentationMode.wrappedValue.dismiss()
+                        presentationMode.wrappedValue.dismiss()
                     }) {
                         Text("Close")
                             .foregroundColor(.magenta)
@@ -47,49 +45,49 @@ struct HeroesView: View {
                 Spacer()
                 ScrollView(.horizontal) {
                     HStack {
-                        ForEach(0..<heroes.count, id: \.self) { index in
+                        ForEach(Hero.allCases) { hero in
                             Button(action: {
                                 withAnimation {
-                                    self.profile.hero = self.heroes[index]
-                                    self.chosenHero = self.heroes[index].name
+                                    profile.setHero(hero)
+                                    chosenHero = hero.name
                                 }
                             }) {
                                 VStack {
-                                    if self.profile.level >= index + 1 {
-                                        Text("\(index + 1) level")
+                                    if profile.level >= hero.rank {
+                                        Text("\(hero.rank + 1) level")
                                             .foregroundColor(.goldDrk)
-                                        
+
                                     } else {
-                                        Text("\(index + 1) level")
+                                        Text("\(hero.rank + 1) level")
                                             .foregroundColor(.secondary)
                                             .opacity(0.4)
                                     }
                                     ZStack {
-                                        Image("\(self.heroes[index].name.lowercased())")
+                                        Image("\(hero.name.lowercased())")
                                             .renderingMode(.original)
                                             .resizable()
                                             .scaledToFit()
                                             .frame(minWidth: 100, idealWidth: 130, maxWidth: 130, minHeight: 100, idealHeight: 130, maxHeight: 130)
-                                            .opacity(self.profile.level >= index + 1 ? 1 : 0.1)
-                                        if self.isChosen(hero: self.heroes[index].name) {
+                                            .opacity(profile.level >= hero.rank + 1 ? 1 : 0.1)
+                                        if self.isChosen(hero: hero.name) {
                                             Circle()
                                                 .stroke()
                                                 .foregroundColor(.goldDrk)
                                         }
                                     }
-                                    Text("\(self.heroes[index].name.uppercased())")
+                                    Text("\(hero.name)")
                                         .font(.custom("Herculanum", size: 17))
                                         .foregroundColor(.magenta)
                                         .padding(.top, 15)
-                                    
-                                    Text("\(index * 4)K")
+
+                                    Text("\(hero.rank * 4)K")
                                         .foregroundColor(.secondary)
                                         .padding(.top, 5)
                                 }
                                 .font(.custom("OpenSans-Regular", size: 15))
                                 .padding(20)
                             }
-                            .disabled(self.profile.level < (index + 1))
+                            .disabled(profile.level < (hero.rank + 1))
                         }
                     }
                 }

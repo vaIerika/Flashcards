@@ -7,17 +7,18 @@
 
 import SwiftUI
 
-enum SheetType {
+enum SheetType: String, Identifiable {
     case editCards, profile
+    var id: String { self.rawValue }
 }
 
 struct ContentView: View {
     @ObservedObject var stack = Stack()
-    @State private var chosenCards: [Card] = []
     @ObservedObject var profile = Profile()
     
-    @State private var sheetType = SheetType.editCards
-    @State private var showingSheet = false
+    @State private var chosenCards: [Card] = []
+    @State private var sheetType: SheetType? = nil 
+
     @State private var retryIncorrectCards = false
     @State private var timerIsActive = false
     @State private var gameMode = false
@@ -40,7 +41,7 @@ struct ContentView: View {
                 HStack {
                     if !gameMode  {
                         Button(action: {
-                            self.showSheet(type: .editCards)
+                            sheetType = .editCards
                         }) {
                             HStack {
                                 Image(systemName: "square.fill.on.square.fill")
@@ -68,36 +69,32 @@ struct ContentView: View {
             
             ZStack {
                 if !gameMode  {
-                    HomeView(profile: profile, gameMode: $gameMode, chosenCards: $chosenCards, sheetType: $sheetType, showingSheet: $showingSheet, startGame: startGame)
-                        .environmentObject(stack)
+                    HomeView(profile: profile, chosenCards: $chosenCards, startGame: startGame) { type in
+                        sheetType = type
+                    }.environmentObject(stack)
                 } else if gameMode {
                     GameView(chosenCards: $chosenCards, retryIncorrectCards: $retryIncorrectCards, gameMode: $gameMode, timerIsActive: $timerIsActive, correctCards: $correctCards, incorrectCards: $incorrectCards, earnedPoints: $earnedPoints, finishGame: finishGame)
                 }
             }
             .padding(20)
         }
-        .sheet(isPresented: $showingSheet) {
-            if self.sheetType == .editCards {
+        .sheet(item: $sheetType) { item in
+            if item == .profile {
+                HeroesView(profile: profile)
+            } else if item == .editCards {
                 CardsListView(profile: profile)
                     .environmentObject(stack)
-            } else if self.sheetType == .profile {
-                HeroesView(profile: profile)
             }
         }
     }
     
-    func showSheet(type: SheetType) {
-        self.sheetType = type
-        self.showingSheet = true
-    }
-    
-    func startGame() {
-        if !chosenCards.isEmpty && gameMode {
-            correctCards = 0
-            incorrectCards = 0
-            earnedPoints = 0
-            timerIsActive = true
-        }
+    private func startGame() {
+        guard !chosenCards.isEmpty else { return }
+        gameMode = true
+        correctCards = 0
+        incorrectCards = 0
+        earnedPoints = 0
+        timerIsActive = true
     }
     
     func updateStatistics() {
