@@ -16,7 +16,7 @@ struct CardCategoriesView: View {
     
     var body: some View {
         VStack {
-            Spacer()
+            Spacer(minLength: 40)
             HStack(spacing: 5) {
                 ForEach(categories) { category in
                     CategoryView(
@@ -29,7 +29,7 @@ struct CardCategoriesView: View {
                     }
                 }
             }
-            Spacer()
+            Spacer(minLength: 40)
             GameButtonView(disabled: chosenCategories.isEmpty || numberOfCards(in: chosenCategories) == 0) {
                 startGame(chosenCategories)
             }
@@ -61,7 +61,7 @@ struct CardCategoriesView_Previews: PreviewProvider {
     static var previews: some View {
         CardCategoriesView(categories: Profile().categories) { _ in
             
-        }
+        }.frame(width: 300, height: 300)
         .environmentObject(Stack())
         .previewLayout(.fixed(width: 500, height: 400))
     }

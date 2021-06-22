@@ -12,7 +12,7 @@ struct PictogramView: View {
     var type: PictogramType
     private var label: String { type.rawValue }
     
-    enum PictogramType: String { case level, points, cards }
+    enum PictogramType: String { case rank, points, cards }
     
     var body: some View {
         VStack(spacing: 8) {
@@ -44,7 +44,7 @@ struct PrettyNumberView: View {
 struct PictogramView_Previews: PreviewProvider {
     static var previews: some View {
         HStack(spacing: 40) {
-            PictogramView(number: 1, type: .level)
+            PictogramView(number: 1, type: .rank)
             PictogramView(number: 54, type: .cards)
             PictogramView(number: 3000, type: .points)
         }

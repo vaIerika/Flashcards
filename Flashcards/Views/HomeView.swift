@@ -21,12 +21,12 @@ struct HomeView: View {
                     showSheet(.profile)
                 }
                 HStack(spacing: 17) {
-                    PictogramView(number: profile.level, type: .level)
+                    PictogramView(number: profile.rank, type: .rank)
                     PictogramView(number: profile.score, type: .points)
                     PictogramView(number: stack.cards.count, type: .cards)
                 }
             }
-            Spacer()
+            Spacer(minLength: 80)
             CardCategoriesView(categories: profile.categories) { chosenCategories in
                 chosenCards = []
                 chosenCategories.forEach { category in

@@ -18,8 +18,9 @@ struct CategoryView: View {
     
     var body: some View {
         ZStack {
-            RoundedRectangle(cornerRadius: 11)
+            RoundedRectangle(cornerRadius: 10)
                 .fill(category.color)
+                .aspectRatio(0.4, contentMode: .fit)
             VStack {
                 Spacer()
                 Image(systemName: category.image)
@@ -31,7 +32,8 @@ struct CategoryView: View {
                     .padding(.bottom, 15)
             }
         }
-        .frame(width: 65, height: 170)
+        //.frame(width: 65, height: 170)
+        .frame(minWidth: 65, minHeight: 170)
         .overlay(
                 Image(systemName: "checkmark")
                     .foregroundColor(.white)
@@ -47,5 +49,6 @@ struct CategoryView_Previews: PreviewProvider {
             CategoryView(category: Category.rouge, numberOfCards: 10, isChosen: true)
             CategoryView(category: Category.forest, numberOfCards: 105, isChosen: false)
         }
+        .frame(width: 200, height: 200)
     }
 }

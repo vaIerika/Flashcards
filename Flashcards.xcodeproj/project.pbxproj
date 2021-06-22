@@ -17,6 +17,7 @@
 		AFC20F662469C275000E7C17 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AFC20F652469C275000E7C17 /* Assets.xcassets */; };
 		AFC20F692469C275000E7C17 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AFC20F682469C275000E7C17 /* Preview Assets.xcassets */; };
 		AFC20F6C2469C275000E7C17 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AFC20F6A2469C275000E7C17 /* LaunchScreen.storyboard */; };
+		B818DB4826821B730093D064 /* HeroButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B818DB4726821B730093D064 /* HeroButtonView.swift */; };
 		B821B8D0267F99B3002713C3 /* Profile.swift in Sources */ = {isa = PBXBuildFile; fileRef = B821B8CF267F99B3002713C3 /* Profile.swift */; };
 		B821B8D2267F99C7002713C3 /* Stack.swift in Sources */ = {isa = PBXBuildFile; fileRef = B821B8D1267F99C7002713C3 /* Stack.swift */; };
 		B821B8D4267F9A44002713C3 /* Card.swift in Sources */ = {isa = PBXBuildFile; fileRef = B821B8D3267F9A44002713C3 /* Card.swift */; };
@@ -58,6 +59,7 @@
 		AFC20F682469C275000E7C17 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		AFC20F6B2469C275000E7C17 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		AFC20F6D2469C275000E7C17 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		B818DB4726821B730093D064 /* HeroButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeroButtonView.swift; sourceTree = "<group>"; };
 		B821B8CF267F99B3002713C3 /* Profile.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Profile.swift; path = "../../../../../../Downloads/Flashcards-master/Flashcards/ViewModel/Profile.swift"; sourceTree = "<group>"; };
 		B821B8D1267F99C7002713C3 /* Stack.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Stack.swift; sourceTree = "<group>"; };
 		B821B8D3267F9A44002713C3 /* Card.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Card.swift; sourceTree = "<group>"; };
@@ -109,6 +111,7 @@
 		AF6F71AB2472E8D2008D3A0D /* Components */ = {
 			isa = PBXGroup;
 			children = (
+				B818DB4726821B730093D064 /* HeroButtonView.swift */,
 				B821B8E3267F9AE9002713C3 /* CardCategoriesView.swift */,
 				B821B8E1267F9AE9002713C3 /* CategoryView.swift */,
 				B821B8E7267F9AE9002713C3 /* GameButtonView.swift */,
@@ -140,8 +143,8 @@
 			children = (
 				B821B8FC267F9B86002713C3 /* ContentView.swift */,
 				B821B900267F9B87002713C3 /* HomeView.swift */,
-				B821B8FA267F9B86002713C3 /* CardsListView.swift */,
 				B821B8FE267F9B86002713C3 /* HeroesView.swift */,
+				B821B8FA267F9B86002713C3 /* CardsListView.swift */,
 				B821B8FF267F9B86002713C3 /* GameView.swift */,
 				B821B8F9267F9B86002713C3 /* ScoreView.swift */,
 				B821B8FB267F9B86002713C3 /* EditCardView.swift */,
@@ -306,6 +309,7 @@
 				B821B8F1267F9AE9002713C3 /* CategoryStepperView.swift in Sources */,
 				B821B8EC267F9AE9002713C3 /* CardView.swift in Sources */,
 				B821B8F2267F9AE9002713C3 /* CategorySettings.swift in Sources */,
+				B818DB4826821B730093D064 /* HeroButtonView.swift in Sources */,
 				B821B8F5267F9AE9002713C3 /* PictogramView.swift in Sources */,
 				B821B8F8267F9B3C002713C3 /* View+CustomFonts.swift in Sources */,
 				B821B8F4267F9AE9002713C3 /* TimerView.swift in Sources */,
