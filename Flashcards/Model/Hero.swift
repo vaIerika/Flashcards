@@ -13,6 +13,7 @@ enum Hero: String, CaseIterable, Codable, Identifiable {
     var name: String { self.rawValue.uppercased() }
     var id: String { name }
     var rank: Int { Hero.allCases.firstIndex(of: self) ?? 0 }
+    var requiredScore: Int { rank * Hero.requiredScorePerRank }
     
     var description: String {
         switch self {
@@ -30,4 +31,7 @@ enum Hero: String, CaseIterable, Codable, Identifiable {
         case .zeus: return "Ruler of the gods and people, \ndonor of life and human destiny"
         }
     }
+    
+    // MARK: - Constants
+    static let requiredScorePerRank = 4000
 }

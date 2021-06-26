@@ -32,7 +32,6 @@ struct CategoryView: View {
                     .padding(.bottom, 15)
             }
         }
-        //.frame(width: 65, height: 170)
         .frame(minWidth: 65, minHeight: 170)
         .overlay(
                 Image(systemName: "checkmark")

@@ -44,6 +44,7 @@
 		B821B907267F9B87002713C3 /* GameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B821B8FF267F9B86002713C3 /* GameView.swift */; };
 		B821B908267F9B87002713C3 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B821B900267F9B87002713C3 /* HomeView.swift */; };
 		B85E3F4D267E0A21000436C8 /* Bundle+Decodable.swift in Sources */ = {isa = PBXBuildFile; fileRef = B85E3F4C267E0A21000436C8 /* Bundle+Decodable.swift */; };
+		B8E9A74A2687421F002C6EEC /* PrettyNumberView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8E9A7492687421F002C6EEC /* PrettyNumberView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -86,6 +87,7 @@
 		B821B8FF267F9B86002713C3 /* GameView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameView.swift; sourceTree = "<group>"; };
 		B821B900267F9B87002713C3 /* HomeView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		B85E3F4C267E0A21000436C8 /* Bundle+Decodable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Bundle+Decodable.swift"; sourceTree = "<group>"; };
+		B8E9A7492687421F002C6EEC /* PrettyNumberView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrettyNumberView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -112,17 +114,18 @@
 			isa = PBXGroup;
 			children = (
 				B818DB4726821B730093D064 /* HeroButtonView.swift */,
-				B821B8E3267F9AE9002713C3 /* CardCategoriesView.swift */,
-				B821B8E1267F9AE9002713C3 /* CategoryView.swift */,
-				B821B8E7267F9AE9002713C3 /* GameButtonView.swift */,
 				B821B8E9267F9AE9002713C3 /* PictogramView.swift */,
+				B821B8E1267F9AE9002713C3 /* CategoryView.swift */,
+				B8E9A7492687421F002C6EEC /* PrettyNumberView.swift */,
+				B821B8E0267F9AE9002713C3 /* CardView.swift */,
+				B821B8E3267F9AE9002713C3 /* CardCategoriesView.swift */,
+				B821B8E7267F9AE9002713C3 /* GameButtonView.swift */,
 				B821B8E2267F9AE9002713C3 /* UserHeroView.swift */,
 				B821B8E8267F9AE9002713C3 /* TimerView.swift */,
 				B821B8EA267F9AE9002713C3 /* TextFieldView.swift */,
 				B821B8DF267F9AE8002713C3 /* ResultsView.swift */,
 				B821B8E5267F9AE9002713C3 /* CategoryStepperView.swift */,
 				B821B8E6267F9AE9002713C3 /* CategorySettings.swift */,
-				B821B8E0267F9AE9002713C3 /* CardView.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -144,9 +147,9 @@
 				B821B8FC267F9B86002713C3 /* ContentView.swift */,
 				B821B900267F9B87002713C3 /* HomeView.swift */,
 				B821B8FE267F9B86002713C3 /* HeroesView.swift */,
-				B821B8FA267F9B86002713C3 /* CardsListView.swift */,
-				B821B8FF267F9B86002713C3 /* GameView.swift */,
 				B821B8F9267F9B86002713C3 /* ScoreView.swift */,
+				B821B8FF267F9B86002713C3 /* GameView.swift */,
+				B821B8FA267F9B86002713C3 /* CardsListView.swift */,
 				B821B8FB267F9B86002713C3 /* EditCardView.swift */,
 				AF6F71AB2472E8D2008D3A0D /* Components */,
 			);
@@ -318,6 +321,7 @@
 				B821B8F6267F9AE9002713C3 /* TextFieldView.swift in Sources */,
 				AFC20F622469C26E000E7C17 /* SceneDelegate.swift in Sources */,
 				B821B8EE267F9AE9002713C3 /* UserHeroView.swift in Sources */,
+				B8E9A74A2687421F002C6EEC /* PrettyNumberView.swift in Sources */,
 				B821B907267F9B87002713C3 /* GameView.swift in Sources */,
 				B821B8EB267F9AE9002713C3 /* ResultsView.swift in Sources */,
 			);

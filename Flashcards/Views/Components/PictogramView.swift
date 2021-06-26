@@ -17,27 +17,12 @@ struct PictogramView: View {
     var body: some View {
         VStack(spacing: 8) {
             PrettyNumberView(number: number)
-                .fontHerculanum(.largeTitle)
             Text(label)
                 .fontOpenSansModifier(.footnote)
                 .opacity(0.6)
                 .lineLimit(1)
         }
         .fixedSize(horizontal: true, vertical: false)
-    }
-}
-
-struct PrettyNumberView: View {
-    var number: Int
-    
-    var body: some View {
-        HStack {
-            if number >= 1000 {
-                Text("\(Double(number) / 1000, specifier: "%g")K")
-            } else {
-                Text("\(number)")
-            }
-        }
     }
 }
 

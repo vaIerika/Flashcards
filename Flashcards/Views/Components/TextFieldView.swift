@@ -19,7 +19,7 @@ struct TextFieldView: View {
                 RoundedRectangle(cornerRadius: 10)
                     .stroke().foregroundColor(Color.secondary.opacity(0.3))
             )
-            .font(.custom("OpenSans-Regular", size: 15))
+            .fontOpenSansModifier(.subheadline)
             .padding(.vertical, 5)
     }
 }

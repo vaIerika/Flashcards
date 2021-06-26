@@ -40,9 +40,7 @@ struct HeroButtonView: View {
                 .fontHerculanum(.headline, color: .magenta)
                 .padding(.top, 15)
             
-            Text("\(hero.rank * 4)K")
-                .fontOpenSansModifier(.footnote)
-                .foregroundColor(.secondary)
+            PrettyNumberView(number: hero.requiredScore, largeTitle: false)
                 .padding(.top, 5)
         }
         .onTapGesture {

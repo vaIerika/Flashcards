@@ -8,21 +8,22 @@
 import SwiftUI
 
 struct CardView: View {
-    
-    // Accessibility
-    @Environment(\.accessibilityEnabled) var accessibilityEnabled // VoiceOver enable
+    /// Accessibility: VoiceOver enable
+    @Environment(\.accessibilityEnabled) var accessibilityEnabled
     @Environment(\.accessibilityDifferentiateWithoutColor) var differentiateWithoutColor
+    
+    var card: Card
+    let retryIncorrectCards: Bool
+    var removal: ((_ isCorrect: Bool) -> Void)?
+
+    /// incorrect answer && retry incorrect cards
+    private var shouldResetPosition: Bool {
+        offset.width < 0 && retryIncorrectCards
+    }
     
     @State private var isShowingAnswer = false
     @State private var offset = CGSize.zero
     @State private var feedback = UINotificationFeedbackGenerator()
-    
-    var card: Card
-    let retryIncorrectCards: Bool
-    private var shouldResetPosition: Bool {
-        offset.width < 0 && retryIncorrectCards // incorrect answer && retry incorrect cards
-    }
-    var removal: ((_ isCorrect: Bool) -> Void)?
     
     var body: some View {
         ZStack {
@@ -31,39 +32,35 @@ struct CardView: View {
                     differentiateWithoutColor
                         ? Color.white
                         : Color.white
-                            .opacity(1 - Double(abs(offset.width / 50)))
-                            .opacity(0)
-                    
+                        .opacity(1 - Double(abs(offset.width / 50)))
+                        .opacity(0)
                 )
                 .background(
                     differentiateWithoutColor
                         ? nil
                         : RoundedRectangle(cornerRadius: 25, style: .continuous)
-                            .fill(getBackgroundColor(offset: offset))
+                        .fill(getBackgroundColor(offset: offset))
                 )
                 .shadow(color: Color.grapeDrk.opacity(0.2), radius: 5, x: 2, y: 2)
             
             VStack {
                 if accessibilityEnabled {
                     Text(isShowingAnswer ? card.answer : card.question)
-                        .font(.largeTitle)
-                        .foregroundColor(Color.black)
+                        .fontOpenSansModifier(.largeTitle)
                 } else {
                     Text(card.question)
-                        .font(.custom("OpenSans-Regular", size: 22))
-                        .foregroundColor(Color.grapeDrk)
+                        .fontOpenSansModifier(.title2)
                     
                     if isShowingAnswer {
                         Text(card.answer)
-                            .font(.custom("OpenSans-Regular", size: 20))
-                            .foregroundColor(Color.goldDrk)
+                            .fontOpenSansModifier(.title2, color: .goldDrk)
                             .padding(.top, 12)
                     }
                 }
             }
             .padding(25)
             .multilineTextAlignment(.center)
-            .lineLimit(3)
+            .lineLimit(10)
         }
         .frame(width: 450, height: 250)
         .rotationEffect(.degrees(Double(offset.width / 5)))
@@ -71,50 +68,45 @@ struct CardView: View {
         .opacity(2 - Double(abs(offset.width / 50)))
         .accessibility(addTraits: .isButton)
         .gesture(dragGesture())
-        .onTapGesture { self.isShowingAnswer.toggle() }
+        .onTapGesture { isShowingAnswer.toggle() }
         .animation(.spring())
     }
     
-    func getBackgroundColor(offset: CGSize) -> Color {
+    private func getBackgroundColor(offset: CGSize) -> Color {
         if offset.width > 0 {
             return .forestBrt
         }
-        
         if offset.width < 0 {
             return .magenta
         }
-        
         return .white
     }
     
-    func dragGesture() -> some Gesture {
+    private func dragGesture() -> some Gesture {
         DragGesture()
             .onChanged { gesture in
-                self.offset = gesture.translation
-                
-                // warm up taptic engine to avoid delay when playing haptic feedback
-                self.feedback.prepare()
+                offset = gesture.translation
+                /// warm up taptic engine to avoid delay when playing haptic feedback
+                feedback.prepare()
             }
             .onEnded { _ in
-                if abs(self.offset.width) > 100 {
-                
-                    // remove the card
-                    if self.offset.width > 0 {
-                        self.feedback.notificationOccurred(.success)
+                if abs(offset.width) > 100 {
+                    /// remove the card
+                    if offset.width > 0 {
+                        feedback.notificationOccurred(.success)
                     } else {
-                        self.feedback.notificationOccurred(.error)
+                        feedback.notificationOccurred(.error)
                     }
                     
-                    self.removal?(self.offset.width > 0)
+                    removal?(offset.width > 0)
                     
-                    if self.shouldResetPosition {
-                        self.isShowingAnswer = false
-                        self.offset = .zero
+                    if shouldResetPosition {
+                        isShowingAnswer = false
+                        offset = .zero
                     }
                 } else {
-                
-                    // restore the card
-                    self.offset = .zero
+                    /// restore the card
+                    offset = .zero
                 }
             }
     }

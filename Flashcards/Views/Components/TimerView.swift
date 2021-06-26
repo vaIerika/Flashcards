@@ -8,9 +8,7 @@
 import SwiftUI
 
 struct TimerView: View {
-    enum Style {
-        case variable, fixed
-    }
+    enum Style { case variable, fixed }
     
     let timeRemaining: Int
     let style: Style
@@ -24,8 +22,7 @@ struct TimerView: View {
                  fixedStyleTimer()
             }
         }
-        .font(.custom("OpenSans-Regular", size: 14))
-        .foregroundColor(Color.grapeDrk)
+        .fontOpenSansModifier(.footnote)
         .padding(.horizontal, 20)
         .padding(.vertical, 5)
         
@@ -36,8 +33,7 @@ struct TimerView: View {
             HStack {
                 Text("Remaining time: ")
                 Text("\(timeRemaining)")
-                    .font(.custom("Herculanum", size: 25))
-                    .foregroundColor(Color.goldDrk)
+                    .fontHerculanum(.title1, color: .goldDrk)
             }
             
             // avoid jitter
@@ -55,7 +51,8 @@ struct TimerView: View {
             ForEach(0..<GameView.maxTimerDigits, id: \.self) { i in
 
                 VStack(alignment: .center) {
-                    self.timerDigitText(for: i)
+                    timerDigitText(for: i)
+                        .fontHerculanum(.title1, color: .goldDrk)
                     
                     // avoid jitter
                     Text("0")
@@ -72,15 +69,11 @@ struct TimerView: View {
 
         if index >= 0 {
             return Text(String(stringTimeRemaining[index]))
-                .font(.custom("Herculanum", size: 25))
-                .foregroundColor(Color.goldDrk)
         }
         
         if displayLeadingZeros {
             return Text("0")
                 .foregroundColor(Color.white.opacity(0.2))
-                .font(.custom("Herculanum", size: 25))
-                .foregroundColor(Color.goldDrk)
         }
         
         return Text("")
@@ -91,5 +84,6 @@ struct TimerView: View {
 struct TimerView_Previews: PreviewProvider {
     static var previews: some View {
         TimerView(timeRemaining: 89, style: .fixed)
+        TimerView(timeRemaining: 89, style: .variable)
     }
 }

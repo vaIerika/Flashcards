@@ -34,8 +34,8 @@ struct GameView: View {
             VStack {
                 HStack {
                     Button(action: {
-                         self.chosenCards = []
-                         self.gameMode = false
+                         chosenCards = []
+                         gameMode = false
                     }) {
                         Image(systemName: "stop.circle")
                             .renderingMode(.none)
@@ -48,26 +48,26 @@ struct GameView: View {
             }
             
             ZStack {
-                ForEach(chosenCards, id: \.self) { card in
-                    CardView(card: card, retryIncorrectCards: self.retryIncorrectCards) { isCorrect in
+                ForEach(chosenCards) { card in
+                    CardView(card: card, retryIncorrectCards: retryIncorrectCards) { isCorrect in
 
                         if isCorrect {
-                            self.correctCards += 1
+                            correctCards += 1
                         } else {
-                            self.incorrectCards += 1
+                            incorrectCards += 1
 
-                            if self.retryIncorrectCards {
-                                self.restackCard(at: self.index(for: card))
+                            if retryIncorrectCards {
+                                restackCard(at: index(for: card))
                                 return
                             }
                         }
                         withAnimation {
-                            self.removeCard(at: self.index(for: card))
+                            removeCard(at: index(for: card))
                         }
                     }
-                    .stacked(at: self.index(for: card), in: self.chosenCards.count)
-                    .allowsHitTesting(self.index(for: card) == self.chosenCards.count - 1)
-                    .accessibility(hidden: self.index(for: card) < self.chosenCards.count - 1)
+                    .stacked(at: index(for: card), in: chosenCards.count)
+                    .allowsHitTesting(index(for: card) == chosenCards.count - 1)
+                    .accessibility(hidden: index(for: card) < chosenCards.count - 1)
                 }
                 .allowsHitTesting(timeRemaining > 0)
                 
@@ -87,42 +87,42 @@ struct GameView: View {
             .padding(.top, 15)
         }
         .onReceive(timer) { time in
-            guard self.timerIsActive else { return }
+            guard timerIsActive else { return }
             
-            if self.timeRemaining > 0 {
-                self.timeRemaining -= 1
-                if self.timeRemaining == 2 {
-                    self.haptics.prepare()
-                } else if self.timeRemaining == 0 {
-                    self.timerIsActive = false
-                    self.haptics.playEnding()
+            if timeRemaining > 0 {
+                timeRemaining -= 1
+                if timeRemaining == 2 {
+                    haptics.prepare()
+                } else if timeRemaining == 0 {
+                    timerIsActive = false
+                    haptics.playEnding()
                 }
             }
         }
-        // pause when on the home screen
+        /// pause when on the home screen
         .onReceive(NotificationCenter.default.publisher(for: UIApplication.willResignActiveNotification)) { _ in
-            self.timerIsActive = false
+            timerIsActive = false
         }
-        // continue after return from home screen
+        /// continue after return from home screen
         .onReceive(NotificationCenter.default.publisher(for: UIApplication.willEnterForegroundNotification)) { _ in
-            if self.chosenCards.isEmpty == false {
-                self.timerIsActive = true
+            if chosenCards.isEmpty == false {
+                timerIsActive = true
             }
         }
     }
     
-    func index(for card: Card) -> Int {
+    private func index(for card: Card) -> Int {
         return chosenCards.firstIndex(where: { $0.id == card.id }) ?? 0
     }
     
-    func restackCard(at index: Int) {
+    private func restackCard(at index: Int) {
         guard index >= 0 else { return }
         let card = chosenCards[index]
         chosenCards.remove(at: index)
         chosenCards.insert(card, at: 0)
     }
     
-    func removeCard(at index: Int) {
+    private func removeCard(at index: Int) {
         guard index >= 0 else { return }
         initialCardsCount += 1
         chosenCards.remove(at: index)

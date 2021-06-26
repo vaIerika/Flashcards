@@ -17,9 +17,7 @@ struct HeroesView: View {
                 HStack {
                     Text("Score:")
                         .foregroundColor(.secondary)
-                    PrettyNumberView(number: profile.score)
-                        .foregroundColor(Color.goldDrk)
-                    
+                    PrettyNumberView(number: profile.score, color: .goldDrk, largeTitle: false)
                 }
                 .fontOpenSansModifier(color: .magenta)
                 Spacer()

@@ -9,7 +9,7 @@ import SwiftUI
 
 struct HomeView: View {
     @EnvironmentObject var stack: Stack
-    var profile: Profile
+    @EnvironmentObject var profile: Profile
     @Binding var chosenCards: [Card]
     var startGame: () -> Void
     var showSheet: (SheetType) -> Void
@@ -42,13 +42,12 @@ struct HomeView: View {
 }
 
 struct HomeView_Previews: PreviewProvider {
-    
     static var previews: some View {
-        func showProfile(_ type: SheetType) -> Void { }
         func startGame() -> Void { }
         
-        return HomeView(profile: Profile(), chosenCards: .constant([Card.example]), startGame: startGame) { _ in }
+        return HomeView(chosenCards: .constant([Card.example]), startGame: startGame) { _ in }
             .environmentObject(Stack())
+            .environmentObject(Profile())
             .previewLayout(.fixed(width: 812, height: 375))
     }
 }

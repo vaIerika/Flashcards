@@ -69,9 +69,11 @@ struct ContentView: View {
             
             ZStack {
                 if !gameMode  {
-                    HomeView(profile: profile, chosenCards: $chosenCards, startGame: startGame) { type in
+                    HomeView(chosenCards: $chosenCards, startGame: startGame) { type in
                         sheetType = type
-                    }.environmentObject(stack)
+                    }
+                    .environmentObject(stack)
+                    .environmentObject(profile)
                 } else if gameMode {
                     GameView(chosenCards: $chosenCards, retryIncorrectCards: $retryIncorrectCards, gameMode: $gameMode, timerIsActive: $timerIsActive, correctCards: $correctCards, incorrectCards: $incorrectCards, earnedPoints: $earnedPoints, finishGame: finishGame)
                 }
