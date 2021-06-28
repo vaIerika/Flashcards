@@ -14,7 +14,7 @@ struct CardsListView: View {
     
     @State private var newQuestion = ""
     @State private var newAnswer = ""
-    @State private var newCategory = 0
+    @State private var newCategory: CategoryColor = .grape
     @State private var showingAddCard = false
     @State private var showingFilters = false
     @State private var filter: Int? = nil
@@ -131,7 +131,8 @@ struct CardsListView: View {
                                 TextFieldView(description: "Question", value: $newQuestion)
                                 TextFieldView(description: "Answer", value: $newAnswer)
                                 HStack {
-                                    CategoryStepperView(category: self.$newCategory)
+                                    //CategoryStepperView(category: self.$newCategory)
+                                    CategoryStepperView(categoryColor: $newCategory)
                                     Spacer()
                                     Text("Please fill in two text fields")
                                         .font(.custom("OpenSans-Regular", size: 13))
@@ -282,12 +283,14 @@ struct CardsListView: View {
         let trimmedAnswer = newAnswer.trimmingCharacters(in: .whitespaces)
         guard trimmedQuestion.isEmpty == false && trimmedAnswer.isEmpty == false else { return }
         
-        let card = Card(question: trimmedQuestion, answer: trimmedAnswer, categoryId: newCategory)
+        //let card = Card(question: trimmedQuestion, answer: trimmedAnswer, categoryId: newCategory)
+        let card = Card(question: trimmedQuestion, answer: trimmedAnswer, categoryId: newCategory.rawValue)
         stack.add(card: card)
         
         newQuestion = ""
         newAnswer = ""
-        newCategory = 0
+        //newCategory = 0
+        newCategory = .grape
     }
     
     func removeCards(at offsets: IndexSet) {

@@ -21,14 +21,16 @@ struct EditCardView: View {
     // TODO: Change for card 
     @State private var question = ""
     @State private var answer = ""
-    @State private var category = 0
+    @State private var category: CategoryColor = .grape
 
     var body: some View {
         VStack {
             HStack {
                 Spacer()
                 Button(action: {
-                    stack.editCard(id: id, question: question, answer: answer, category: category)
+                    stack.editCard(id: id, question: question, answer: answer, category: category.rawValue)
+                    //stack.editCard(id: id, question: question, answer: answer, category: category)
+                    
                     presentationMode.wrappedValue.dismiss()
                 }) {
                     Text("Save")
@@ -37,15 +39,13 @@ struct EditCardView: View {
                 }
             }
             .padding(.bottom, 20)
-            
-//            TextFieldView(description: "Question", value: $stack.cards[index].question)
-//            TextFieldView(description: "Answer", value:  $stack.cards[index].answer)
+    
             TextFieldView(description: "Question", value: $question)
             TextFieldView(description: "Answer", value:  $answer)
             
             HStack {
                 //CategoryStepperView(category: $stack.cards[index].category)
-                CategoryStepperView(category: $category)
+                CategoryStepperView(categoryColor: $category)
                 Spacer()
             }
             Spacer()

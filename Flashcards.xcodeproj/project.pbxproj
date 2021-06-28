@@ -44,6 +44,7 @@
 		B821B907267F9B87002713C3 /* GameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B821B8FF267F9B86002713C3 /* GameView.swift */; };
 		B821B908267F9B87002713C3 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B821B900267F9B87002713C3 /* HomeView.swift */; };
 		B85E3F4D267E0A21000436C8 /* Bundle+Decodable.swift in Sources */ = {isa = PBXBuildFile; fileRef = B85E3F4C267E0A21000436C8 /* Bundle+Decodable.swift */; };
+		B88812872689E20A00BEF9D5 /* StepperArrowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B88812862689E20A00BEF9D5 /* StepperArrowView.swift */; };
 		B8E9A74A2687421F002C6EEC /* PrettyNumberView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8E9A7492687421F002C6EEC /* PrettyNumberView.swift */; };
 /* End PBXBuildFile section */
 
@@ -87,6 +88,7 @@
 		B821B8FF267F9B86002713C3 /* GameView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameView.swift; sourceTree = "<group>"; };
 		B821B900267F9B87002713C3 /* HomeView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		B85E3F4C267E0A21000436C8 /* Bundle+Decodable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Bundle+Decodable.swift"; sourceTree = "<group>"; };
+		B88812862689E20A00BEF9D5 /* StepperArrowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StepperArrowView.swift; sourceTree = "<group>"; };
 		B8E9A7492687421F002C6EEC /* PrettyNumberView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrettyNumberView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -123,9 +125,10 @@
 				B821B8E2267F9AE9002713C3 /* UserHeroView.swift */,
 				B821B8E8267F9AE9002713C3 /* TimerView.swift */,
 				B821B8EA267F9AE9002713C3 /* TextFieldView.swift */,
-				B821B8DF267F9AE8002713C3 /* ResultsView.swift */,
 				B821B8E5267F9AE9002713C3 /* CategoryStepperView.swift */,
+				B88812862689E20A00BEF9D5 /* StepperArrowView.swift */,
 				B821B8E6267F9AE9002713C3 /* CategorySettings.swift */,
+				B821B8DF267F9AE8002713C3 /* ResultsView.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -305,6 +308,7 @@
 				B821B8D4267F9A44002713C3 /* Card.swift in Sources */,
 				B821B8EF267F9AE9002713C3 /* CardCategoriesView.swift in Sources */,
 				B821B8DC267F9AC2002713C3 /* Hero.swift in Sources */,
+				B88812872689E20A00BEF9D5 /* StepperArrowView.swift in Sources */,
 				B821B908267F9B87002713C3 /* HomeView.swift in Sources */,
 				B821B902267F9B87002713C3 /* CardsListView.swift in Sources */,
 				AFC20F602469C26E000E7C17 /* AppDelegate.swift in Sources */,

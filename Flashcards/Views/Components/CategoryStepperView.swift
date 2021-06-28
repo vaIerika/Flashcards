@@ -8,73 +8,36 @@
 import SwiftUI
 
 struct CategoryStepperView: View {
-    @Binding var category: Int
-    @State private var min = false
-    @State private var max = false
+    @Binding var categoryColor: CategoryColor
     
     var body: some View {
         HStack {
             Text("Category:")
-                .font(.custom("OpenSans-Regular", size: 15))
-                .foregroundColor(.secondary)
+                .fontOpenSansModifier(color: .secondary)
                 .padding(.trailing, 5)
             
-            Button(action: {
-                withAnimation {
-                    if self.category > 0 {
-                        self.category -= 1
-                        self.validation()
-                    } else {
-                        self.category = 0
-                        self.validation()
-                    }
-                }
-            }) {
-                Image(systemName: "chevron.left")
-                    .foregroundColor(min ? .secondary : .magenta)
-                    .frame(width: 40, height: 40)
-            }
+            StepperArrowView(categoryColor: $categoryColor, forward: false)
             
             RoundedRectangle(cornerRadius: 5)
-                .fill(Color.gradients[category])
+                .fill(categoryColor.color)
                 .frame(width: 30, height: 30)
                 .padding(.horizontal, 15)
-      
-            Button(action: {
-                withAnimation {
-                    if self.category < Color.gradients.count - 1 {
-                        self.category += 1
-                        self.validation()
-                    } else {
-                        self.category = Color.gradients.count - 1
-                         self.validation()
-                    }
-                }
-            }) {
-                Image(systemName: "chevron.right")
-                    .foregroundColor(max ? .secondary : .magenta)
-                    .frame(width: 40, height: 40)
-            }
-        }
-        .onAppear(perform: validation)
-    }
-    
-    func validation() {
-        if category == 0 {
-            min = true
-            max = false
-        } else if category == Color.gradients.count - 1 {
-            min = false
-            max = true
-        } else {
-            min = false
-            max = false
+            
+            StepperArrowView(categoryColor: $categoryColor)
         }
     }
 }
 
 struct CategoryStepperView_Previews: PreviewProvider {
     static var previews: some View {
-        CategoryStepperView(category: Binding.constant(4))
+        CategoryStepperViewWrapper()
+    }
+    
+    struct CategoryStepperViewWrapper: View {
+        @State private var category = CategoryColor.grape
+
+        var body: some View {
+            CategoryStepperView(categoryColor: $category)
+        }
     }
 }

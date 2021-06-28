@@ -25,7 +25,6 @@ struct TimerView: View {
         .fontOpenSansModifier(.footnote)
         .padding(.horizontal, 20)
         .padding(.vertical, 5)
-        
     }
     
     private func variableStyleTimer() -> some View {
@@ -49,7 +48,6 @@ struct TimerView: View {
         HStack(spacing: 0) {
             Text("Time: ")
             ForEach(0..<GameView.maxTimerDigits, id: \.self) { i in
-
                 VStack(alignment: .center) {
                     timerDigitText(for: i)
                         .fontHerculanum(.title1, color: .goldDrk)
