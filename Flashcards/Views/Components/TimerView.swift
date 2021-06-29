@@ -78,7 +78,6 @@ struct TimerView: View {
     }
 }
 
-
 struct TimerView_Previews: PreviewProvider {
     static var previews: some View {
         TimerView(timeRemaining: 89, style: .fixed)

@@ -23,6 +23,8 @@ struct CardsListView: View {
     @State private var angle = 0.0
     @State private var showingError = false
     
+    @State private var chosenCategory: Category?
+    
     var body: some View {
         NavigationView {
             ZStack {
@@ -82,7 +84,8 @@ struct CardsListView: View {
                             ForEach(profile.categories) { category in
                                 Button(action: {
                                     //self.filter = category.color
-                                    filter = category.id
+                                    //filter = category.id
+                                    chosenCategory = category
                                     self.displayCards()
                                 }) {
                                     ZStack {
@@ -96,19 +99,22 @@ struct CardsListView: View {
                                     }
                                     .onTapGesture {
                                         //self.filter = category.color
-                                        filter = category.id
+                                        //filter = category.id
+                                        chosenCategory = category
                                         self.displayCards()
                                     }
                                     .onLongPressGesture {
                                         //self.filter = category.color
-                                        filter = category.id
-                                        self.showingCategorySettings = true
+                                        //filter = category.id
+                                        chosenCategory = category
+                                        showingCategorySettings = true
                                     }
                                 }
                             }
                             
                             Button(action: {
-                                self.filter = nil
+                                //self.filter = nil
+                                chosenCategory = nil
                                 self.displayCards()
                             }) {
                                 ZStack {
@@ -168,7 +174,7 @@ struct CardsListView: View {
                         }
                         
                         Section {
-                            if showingFilters && filter != nil {
+                            if showingFilters && chosenCategory != nil {
                                 Button(action: {
                                     self.showingCategorySettings = true
                                 }){
@@ -210,8 +216,10 @@ struct CardsListView: View {
                     .onAppear(perform: displayCards)
                     .buttonStyle(PlainButtonStyle())
                     .sheet(isPresented: $showingCategorySettings, content: {
-                        if self.filter != nil {
-                            CategorySettings(profile: profile, category: self.filter!)
+                        if chosenCategory != nil {
+                            CategorySettings() { newImageName in
+                                profile.setImage(named: newImageName, for: chosenCategory!)
+                            }
                         }
                     })
                     .environmentObject(stack)

@@ -29,12 +29,14 @@ extension Color {
     static let grapeGrdnt = LinearGradient(gradient: Gradient(colors: [.grapeDrk, .grapeBrt]), startPoint: .topLeading, endPoint: .bottomTrailing)
     static let forestGrdnt = LinearGradient(gradient: Gradient(colors: [.forestDrk, .forestBrt]), startPoint: .topLeading, endPoint: .bottomTrailing)
     
-    static let gradients = [Color.rougeGrdnt, Color.goldGrdnt, Color.grapeGrdnt, Color.forestGrdnt, Color.navyGrdnt]
+    static let magentaGrdnt =  LinearGradient(gradient: Gradient(colors: [.magenta, .magenta.opacity(0.8)]), startPoint: .topLeading, endPoint: .bottomTrailing)
+    
+    static let gradients = [Color.rougeGrdnt, Color.goldGrdnt, Color.grapeGrdnt, Color.forestGrdnt, Color.navyGrdnt, Color.magentaGrdnt]
 }
 
 struct ColorExtension_Previews: PreviewProvider {
     static let colors = [Color.navyBrt, Color.navyDrk, Color.goldBrt, Color.goldDrk, Color.rougeBrt, Color.rougeDrk, Color.magenta, Color.grapeBrt, Color.grapeDrk, Color.forestBrt, Color.forestDrk, Color.cloud]
-    static let gradients = [Color.navyGrdnt, Color.goldGrdnt, Color.rougeGrdnt, Color.grapeGrdnt, Color.forestGrdnt]
+    static let gradients = [Color.navyGrdnt, Color.goldGrdnt, Color.rougeGrdnt, Color.grapeGrdnt, Color.forestGrdnt, Color.magentaGrdnt]
     
     static var previews: some View {
         VStack(spacing: 80) {

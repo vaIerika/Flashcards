@@ -17,7 +17,7 @@ struct ResultsView: View {
     @Binding var earnedPoints: Int
     let finishGame: () -> Void
 
-    var imageName: String {
+    private var imageName: String {
         if timeOut {
             return "hourglass"
         }
@@ -34,18 +34,15 @@ struct ResultsView: View {
             
             if timeOut {
                 Text("Time is out")
-                    .font(.custom("Herculanum", size: 18))
-                    .foregroundColor(Color.grapeDrk)
+                    .fontHerculanum(.title1)
                     .padding(.bottom, 13)
-                 Text("Next time will be better")
-                    .font(.custom("OpenSans-Regular", size: 13))
-                    .foregroundColor(Color.grapeDrk)
+                 Text("Next time will be better.")
+                    .fontOpenSansModifier(.callout)
                     .padding(.bottom, 27)
                     .padding(.horizontal, 20)
             } else {
                 Text("+\(earnedPoints) points")
-                    .font(.custom("Herculanum", size: 18))
-                    .foregroundColor(Color.grapeDrk)
+                    .fontHerculanum(.title1)
                     .padding(.bottom, 13)
                 
                 HStack {
@@ -56,24 +53,13 @@ struct ResultsView: View {
                     Text("\(reviewedCards) reviewed")
                 }
                 .fixedSize(horizontal: true, vertical: true)
-                .font(.custom("OpenSans-Regular", size: 13))
-                .foregroundColor(Color.grapeDrk)
+                .fontOpenSansModifier(.callout)
                 .opacity(0.6)
                 .padding(.bottom, 27)
             }
             
-            Button(action: {
-                self.finishGame()
-            }) {
-                Text("Okey")
-                    .font(.custom("Herculanum", size: 17))
-                    .foregroundColor(.white)
-                    .padding(.horizontal, 35)
-                    .padding(.vertical, 12)
-                    .background(
-                        RoundedRectangle(cornerRadius: 30)
-                            .fill(Color.goldGrdnt)
-                    )
+            GameButtonView(text: "Okey", disabled: false, bgColor: Color.goldGrdnt) {
+                finishGame()
             }
         }
         .padding(.horizontal, 50)
@@ -81,12 +67,12 @@ struct ResultsView: View {
         .background(
             RoundedRectangle(cornerRadius: 14)
                 .fill(Color.white)
-                .shadow(color: Color.grapeDrk.opacity(0.5), radius: 4, x: 2, y: 2)
+                .shadow(color: Color.grapeDrk.opacity(0.2), radius: 4, x: 2, y: 2)
         )
         .onAppear(perform: countScore)
     }
     
-    func countScore() {
+    private func countScore() {
         if timeOut {
             earnedPoints = 0
             return

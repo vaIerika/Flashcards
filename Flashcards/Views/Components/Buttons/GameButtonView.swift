@@ -10,6 +10,7 @@ import SwiftUI
 struct GameButtonView: View {
     var text: String = "Start Game"
     var disabled: Bool = false
+    var bgColor: LinearGradient = Color.magentaGrdnt
     var action: () -> Void
     
     @State private var animation = false
@@ -30,7 +31,7 @@ struct GameButtonView: View {
                 .padding(.vertical, 18)
                 .background(
                     RoundedRectangle(cornerRadius: 30)
-                        .fill(Color.magenta)
+                        .fill(bgColor)
                         .opacity(disabled ? 0.5 : 1)
                 )
                 .scaleEffect(animation ? 1.2 : 1)
