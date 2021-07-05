@@ -17,22 +17,19 @@ struct GameView: View {
     @State private var timeRemaining = Self.initialTimerValue
     
     @Binding var chosenCards: [Card]
-    @Binding var retryIncorrectCards: Bool
-    @Binding var gameMode: Bool 
+    @Binding var gameMode: Bool
     @Binding var timerIsActive: Bool
+
+    @State private var retryIncorrectCards = false
+    @State private var gameResults = GameResults()
     
-    // Results
-    @State private var initialCardsCount = 0
-    @Binding var correctCards: Int
-    @Binding var incorrectCards: Int
-    private var reviewedCards: Int { correctCards + incorrectCards }
-    @Binding var earnedPoints: Int
-    let finishGame: () -> Void
+    var finishGame: (_ correct: Int, _ earnedPoints: Int) -> Void
     
     var body: some View {
         ZStack {
             VStack {
                 HStack {
+                    Spacer()
                     Button(action: {
                          chosenCards = []
                          gameMode = false
@@ -43,19 +40,24 @@ struct GameView: View {
                             .font(.system(size: 20))
                     }
                     TimerView(timeRemaining: timeRemaining, style: .variable)
+                    Spacer()
                 }
+                .overlay(
+                    Toggle(isOn: $retryIncorrectCards) {
+                        Text("Retry wrong cards")
+                            .foregroundColor(Color.grapeDrk)
+                            .font(.custom("OpenSans-Regular", size: 14))
+                    }.frame(width: 190),
+                    alignment: .topTrailing
+                )
                 Spacer()
             }
             
             ZStack {
                 ForEach(chosenCards) { card in
                     CardView(card: card, retryIncorrectCards: retryIncorrectCards) { isCorrect in
-
-                        if isCorrect {
-                            correctCards += 1
-                        } else {
-                            incorrectCards += 1
-
+                        gameResults.addResult(isCorrect: isCorrect)
+                        if !isCorrect {
                             if retryIncorrectCards {
                                 restackCard(at: index(for: card))
                                 return
@@ -72,16 +74,11 @@ struct GameView: View {
                 .allowsHitTesting(timeRemaining > 0)
                 
                 if timeRemaining == 0 || !timerIsActive {
-                    ResultsView(timeOut: timeRemaining == 0,
-                                retryIncorrectCards: retryIncorrectCards,
-                                initialCardsCount: initialCardsCount,
-                                reviewedCards: reviewedCards,
-                                correctCards: correctCards,
-                                incorrectCards: incorrectCards,
-                                earnedPoints: $earnedPoints,
-                                finishGame: finishGame)
-                        
-                        .frame(width: 300, height: 200)
+                    ResultsView(timeOut: timeRemaining == 0, gameResults: gameResults) {
+                        finishGame(gameResults.correct, gameResults.earnedPoints)
+                        gameMode = false
+                    }
+                    .frame(width: 300, height: 200)
                 }
             }
             .padding(.top, 15)
@@ -124,13 +121,14 @@ struct GameView: View {
     
     private func removeCard(at index: Int) {
         guard index >= 0 else { return }
-        initialCardsCount += 1
+        gameResults.playCard()
         chosenCards.remove(at: index)
         
         if chosenCards.count == 1 {
             haptics.prepare()
         }
         if chosenCards.isEmpty {
+            gameResults.calculatePoints(timeOut: timeRemaining <= 0)
             timerIsActive = false
             haptics.playEnding()
         }
@@ -141,7 +139,8 @@ struct GameView_Previews: PreviewProvider {
     static func example() { }
     
     static var previews: some View {
-        GameView(chosenCards: Binding.constant([Card.example]), retryIncorrectCards: Binding.constant(true), gameMode: Binding.constant(true), timerIsActive: Binding.constant(true), correctCards: Binding.constant(10), incorrectCards: Binding.constant(5), earnedPoints: Binding.constant(3000), finishGame: example)
-            .previewLayout(.fixed(width: 812, height: 375))
+        GameView(chosenCards: Binding.constant([Card.example]), gameMode: Binding.constant(true), timerIsActive: Binding.constant(true)) { _, _ in
+            
+        }.previewLayout(.fixed(width: 812, height: 375))
     }
 }

@@ -18,28 +18,15 @@ struct ContentView: View {
     
     @State private var chosenCards: [Card] = []
     @State private var sheetType: SheetType? = nil 
-
-    @State private var retryIncorrectCards = false
+    
     @State private var timerIsActive = false
     @State private var gameMode = false
-    @State private var correctCards = 0
-    @State private var incorrectCards = 0
-    @State private var earnedPoints = 0
     
     var body: some View {
         ZStack {
-            Color.white
-                .edgesIgnoringSafeArea(.all)
-            
-            Image("gameBg")
-                .resizable()
-                .scaledToFill()
-                .edgesIgnoringSafeArea(.all)
-                .opacity(gameMode ? 1 : 0)
-            
-            VStack {
-                HStack {
-                    if !gameMode  {
+            if !gameMode  {
+                VStack {
+                    HStack {
                         Button(action: {
                             sheetType = .editCards
                         }) {
@@ -54,32 +41,33 @@ struct ContentView: View {
                                     .font(.custom("OpenSans-Regular", size: 14))
                             }
                         }
-                    }
-                    Spacer()
-                    Toggle(isOn: $retryIncorrectCards) {
-                        Text("Retry wrong cards")
-                            .foregroundColor(Color.grapeDrk)
-                            .font(.custom("OpenSans-Regular", size: 14))
-                    }
-                    .frame(width: 180)
-                }
-                Spacer()
-            }
-            .padding(20)
-            
-            ZStack {
-                if !gameMode  {
+                    }.frame(maxWidth: .infinity, alignment: .leading)
+                    
                     HomeView(chosenCards: $chosenCards, startGame: startGame) { type in
                         sheetType = type
                     }
                     .environmentObject(stack)
                     .environmentObject(profile)
-                } else if gameMode {
-                    GameView(chosenCards: $chosenCards, retryIncorrectCards: $retryIncorrectCards, gameMode: $gameMode, timerIsActive: $timerIsActive, correctCards: $correctCards, incorrectCards: $incorrectCards, earnedPoints: $earnedPoints, finishGame: finishGame)
+                    
+                }
+            } else if gameMode {
+                GameView(chosenCards: $chosenCards, gameMode: $gameMode, timerIsActive: $timerIsActive) { (correctCards, earnedPoints) in
+                    profile.finishRound(correct: correctCards, earnedPoints: earnedPoints)
                 }
             }
-            .padding(20)
         }
+        .padding(20)
+        .background(
+            ZStack {
+                Color.white
+                    .edgesIgnoringSafeArea(.all)
+                Image("gameBg")
+                    .resizable()
+                    .scaledToFill()
+                    .edgesIgnoringSafeArea(.all)
+                    .opacity(gameMode ? 1 : 0)
+            }
+        )
         .sheet(item: $sheetType) { item in
             if item == .profile {
                 HeroesView(profile: profile)
@@ -93,14 +81,11 @@ struct ContentView: View {
     private func startGame() {
         guard !chosenCards.isEmpty else { return }
         gameMode = true
-        correctCards = 0
-        incorrectCards = 0
-        earnedPoints = 0
         timerIsActive = true
     }
     
     func updateStatistics() {
-        profile.finishRound(correct: correctCards, earnedPoints: earnedPoints)
+        //profile.finishRound(correct: correctCards, earnedPoints: earnedPoints)
     }
     
     func finishGame() {
