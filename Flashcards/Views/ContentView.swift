@@ -18,13 +18,15 @@ struct ContentView: View {
     
     @State private var chosenCards: [Card] = []
     @State private var sheetType: SheetType? = nil 
-    
-    @State private var timerIsActive = false
     @State private var gameMode = false
     
     var body: some View {
         ZStack {
-            if !gameMode  {
+            if gameMode {
+                GameView(chosenCards: $chosenCards, gameMode: $gameMode) { (correctCards, earnedPoints) in
+                    profile.finishRound(correct: correctCards, earnedPoints: earnedPoints)
+                }
+            } else {
                 VStack {
                     HStack {
                         Button(action: {
@@ -37,8 +39,7 @@ struct ContentView: View {
                                     .font(.system(size: 20))
                                 
                                 Text("Cards")
-                                    .foregroundColor(Color.grapeDrk)
-                                    .font(.custom("OpenSans-Regular", size: 14))
+                                    .fontOpenSansModifier(.footnote)
                             }
                         }
                     }.frame(maxWidth: .infinity, alignment: .leading)
@@ -48,11 +49,6 @@ struct ContentView: View {
                     }
                     .environmentObject(stack)
                     .environmentObject(profile)
-                    
-                }
-            } else if gameMode {
-                GameView(chosenCards: $chosenCards, gameMode: $gameMode, timerIsActive: $timerIsActive) { (correctCards, earnedPoints) in
-                    profile.finishRound(correct: correctCards, earnedPoints: earnedPoints)
                 }
             }
         }
@@ -81,27 +77,6 @@ struct ContentView: View {
     private func startGame() {
         guard !chosenCards.isEmpty else { return }
         gameMode = true
-        timerIsActive = true
-    }
-    
-    func updateStatistics() {
-        //profile.finishRound(correct: correctCards, earnedPoints: earnedPoints)
-    }
-    
-    func finishGame() {
-        if gameMode {
-            if chosenCards.isEmpty {
-                updateStatistics()
-                timerIsActive = false
-                withAnimation {
-                    gameMode = false
-                }
-            }
-            if !timerIsActive {
-                gameMode = false
-                chosenCards.removeAll()
-            }
-        }
     }
     
     init() {

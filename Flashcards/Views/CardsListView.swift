@@ -25,6 +25,13 @@ struct CardsListView: View {
     
     @State private var chosenCategory: Category?
     
+    init(profile: Profile) {
+        self.profile = profile
+        UISwitch.appearance().onTintColor = .goldDrk
+        UITableView.appearance().separatorStyle = .none
+        UITableViewCell.appearance().selectionStyle = .none
+    }
+    
     var body: some View {
         NavigationView {
             ZStack {
@@ -172,7 +179,7 @@ struct CardsListView: View {
                             }
                             .padding(.bottom, 15)
                         }
-                        
+
                         Section {
                             if showingFilters && chosenCategory != nil {
                                 Button(action: {
@@ -213,6 +220,7 @@ struct CardsListView: View {
                             .onDelete(perform: removeCards(at:))
                         }
                     }
+                    //.listSeparatorStyle(style: .none)
                     .onAppear(perform: displayCards)
                     .buttonStyle(PlainButtonStyle())
                     .sheet(isPresented: $showingCategorySettings, content: {
@@ -309,6 +317,23 @@ struct CardsListView: View {
 
             self.shownCards.remove(atOffsets: offsets)
         }
+    }
+}
+
+struct ListSeparatorStyle: ViewModifier {
+    let style: UITableViewCell.SeparatorStyle
+    
+    func body(content: Content) -> some View {
+        content
+            .onAppear() {
+                UITableView.appearance().separatorStyle = self.style
+            }
+    }
+}
+ 
+extension View {
+    func listSeparatorStyle(style: UITableViewCell.SeparatorStyle) -> some View {
+        ModifiedContent(content: self, modifier: ListSeparatorStyle(style: style))
     }
 }
 

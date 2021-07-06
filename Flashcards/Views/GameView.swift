@@ -8,22 +8,22 @@
 import SwiftUI
 
 struct GameView: View {
-    let haptics = Haptics()
-
-    // Timer
-    let timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
-    static let initialTimerValue = 100
-    static let maxTimerDigits = String(Self.initialTimerValue).count
-    @State private var timeRemaining = Self.initialTimerValue
-    
     @Binding var chosenCards: [Card]
     @Binding var gameMode: Bool
-    @Binding var timerIsActive: Bool
+    var finishGame: (_ correct: Int, _ earnedPoints: Int) -> Void
 
     @State private var retryIncorrectCards = false
     @State private var gameResults = GameResults()
     
-    var finishGame: (_ correct: Int, _ earnedPoints: Int) -> Void
+    // MARK: - Haptics
+    private let haptics = Haptics()
+
+    // MARK: - Timer
+    private let timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
+    static let initialTimerValue = 100
+    static let maxTimerDigits = String(Self.initialTimerValue).count
+    @State private var timeRemaining = Self.initialTimerValue
+    @State private var timerIsActive = true
     
     var body: some View {
         ZStack {
@@ -31,8 +31,9 @@ struct GameView: View {
                 HStack {
                     Spacer()
                     Button(action: {
-                         chosenCards = []
-                         gameMode = false
+                        chosenCards = []
+                        timerIsActive = false
+                        gameMode = false
                     }) {
                         Image(systemName: "stop.circle")
                             .renderingMode(.none)
@@ -45,8 +46,7 @@ struct GameView: View {
                 .overlay(
                     Toggle(isOn: $retryIncorrectCards) {
                         Text("Retry wrong cards")
-                            .foregroundColor(Color.grapeDrk)
-                            .font(.custom("OpenSans-Regular", size: 14))
+                            .fontOpenSansModifier(.footnote)
                     }.frame(width: 190),
                     alignment: .topTrailing
                 )
@@ -136,10 +136,8 @@ struct GameView: View {
 }
 
 struct GameView_Previews: PreviewProvider {
-    static func example() { }
-    
     static var previews: some View {
-        GameView(chosenCards: Binding.constant([Card.example]), gameMode: Binding.constant(true), timerIsActive: Binding.constant(true)) { _, _ in
+        GameView(chosenCards: Binding.constant([Card.example]), gameMode: Binding.constant(true)) { _, _ in
             
         }.previewLayout(.fixed(width: 812, height: 375))
     }
