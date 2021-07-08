@@ -9,42 +9,36 @@ import SwiftUI
 
 struct EditCardView: View {
     @Environment(\.presentationMode) var presentationMode
-    @EnvironmentObject var stack: Stack
-    var id: UUID
-    var index: Int {
-        if let index = stack.cards.firstIndex(where: { ($0.id == id)}) {
-           return index
-        }
-        return 0
+    @State private var question: String
+    @State private var answer: String
+    @State private var category: CategoryColor
+    
+    var edit: (String, String, Int) -> Void
+
+    init(card: Card, edit: @escaping (String, String, Int) -> Void) {
+        _question = State(initialValue: card.question)
+        _answer = State(initialValue: card.answer)
+        _category = State(initialValue: CategoryColor(rawValue: card.categoryId) ?? .grape)
+        self.edit = edit
     }
     
-    // TODO: Change for card 
-    @State private var question = ""
-    @State private var answer = ""
-    @State private var category: CategoryColor = .grape
-
     var body: some View {
         VStack {
             HStack {
+                Button("Close") { presentationMode.wrappedValue.dismiss() }
                 Spacer()
-                Button(action: {
-                    stack.editCard(id: id, question: question, answer: answer, category: category.rawValue)
-                    //stack.editCard(id: id, question: question, answer: answer, category: category)
-                    
+                Button("Save") {
+                    edit(question, answer, category.rawValue)
                     presentationMode.wrappedValue.dismiss()
-                }) {
-                    Text("Save")
-                        .font(.custom("OpenSans-Regular", size: 15))
-                        .foregroundColor(Color.magenta)
                 }
             }
+            .fontOpenSansModifier(.subheadline, color: .magenta)
             .padding(.bottom, 20)
     
             TextFieldView(description: "Question", value: $question)
             TextFieldView(description: "Answer", value:  $answer)
             
             HStack {
-                //CategoryStepperView(category: $stack.cards[index].category)
                 CategoryStepperView(categoryColor: $category)
                 Spacer()
             }
@@ -60,7 +54,8 @@ struct EditCardView: View {
 
 struct EditCardView_Previews: PreviewProvider {
     static var previews: some View {
-        EditCardView(id: Stack().cards[0].id)
-           .previewLayout(.fixed(width: 568, height: 320))
+        EditCardView(card: Card.example) { _, _, _ in
+            
+        }.previewLayout(.fixed(width: 568, height: 320))
     }
 }

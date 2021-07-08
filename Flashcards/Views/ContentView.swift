@@ -28,22 +28,8 @@ struct ContentView: View {
                 }
             } else {
                 VStack {
-                    HStack {
-                        Button(action: {
-                            sheetType = .editCards
-                        }) {
-                            HStack {
-                                Image(systemName: "square.fill.on.square.fill")
-                                    .renderingMode(.none)
-                                    .foregroundColor(Color.magenta)
-                                    .font(.system(size: 20))
-                                
-                                Text("Cards")
-                                    .fontOpenSansModifier(.footnote)
-                            }
-                        }
-                    }.frame(maxWidth: .infinity, alignment: .leading)
-                    
+                    ButtonTextWithImage(type: .cards) { sheetType = .editCards }
+                        .frame(maxWidth: .infinity, alignment: .leading)
                     HomeView(chosenCards: $chosenCards, startGame: startGame) { type in
                         sheetType = type
                     }

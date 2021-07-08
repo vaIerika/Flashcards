@@ -12,16 +12,11 @@ struct CardsListView: View {
     @EnvironmentObject var stack: Stack
     @ObservedObject var profile: Profile
     
-    @State private var newQuestion = ""
-    @State private var newAnswer = ""
-    @State private var newCategory: CategoryColor = .grape
     @State private var showingAddCard = false
     @State private var showingFilters = false
     @State private var filter: Int? = nil
     @State private var shownCards: [Card] = []
     @State private var showingCategorySettings = false
-    @State private var angle = 0.0
-    @State private var showingError = false
     
     @State private var chosenCategory: Category?
     
@@ -37,53 +32,19 @@ struct CardsListView: View {
             ZStack {
                 VStack {
                     HStack(spacing: 40) {
-                        Button(action: {
-                            self.presentationMode.wrappedValue.dismiss()
-                        }) {
-                            HStack {
-                                Image(systemName: "arrow.left")
-                                    .renderingMode(.none)
-                                    .foregroundColor(Color.magenta)
-                                    .font(.system(size: 20))
-                                Text("Back")
-                                    .font(.custom("OpenSans-Regular", size: 14))
-                            }
+                        ButtonTextWithImage(type: .back) {
+                            presentationMode.wrappedValue.dismiss()
                         }
-                        
                         Spacer()
-                        Button(action: {
-                            withAnimation {
-                                self.showingFilters.toggle()
-                            }
-                        }) {
-                            HStack {
-                                Image(systemName: "tag.fill")
-                                    .renderingMode(.none)
-                                    .foregroundColor(Color.magenta)
-                                    .font(.system(size: 20))
-                                Text("Filter")
-                            }
+                        ButtonTextWithImage(type: .filter) {
+                            showingFilters.toggle()
                         }
-                        
-                        Button(action: {
+                        ButtonTextWithImage(type: .newCard, rotation: showingAddCard) {
                             withAnimation {
-                                self.showingAddCard.toggle()
-                                self.angle += 45
-                                self.showingError = false
-                            }
-                        }) {
-                            HStack {
-                                Image(systemName: "plus")
-                                    .renderingMode(.none)
-                                    .foregroundColor(Color.magenta)
-                                    .font(.system(size: 20))
-                                    .rotationEffect(Angle(degrees: angle))
-                                Text("New card")
+                                showingAddCard.toggle()
                             }
                         }
                     }
-                    .font(.custom("OpenSans-Regular", size: 14))
-                    .foregroundColor(Color.secondary)
                     .padding(.top, 25)
                     
                     if showingFilters {
@@ -98,7 +59,6 @@ struct CardsListView: View {
                                     ZStack {
                                         RoundedRectangle(cornerRadius: 10)
                                             .fill(category.color)
-                                            //.fill(Color.gradients[category.color])
                                             .frame(width: 50, height: 50)
                                         
                                         Image(systemName: category.image)
@@ -140,44 +100,11 @@ struct CardsListView: View {
                     
                     List {
                         if showingAddCard {
-                            VStack {
-                                TextFieldView(description: "Question", value: $newQuestion)
-                                TextFieldView(description: "Answer", value: $newAnswer)
-                                HStack {
-                                    //CategoryStepperView(category: self.$newCategory)
-                                    CategoryStepperView(categoryColor: $newCategory)
-                                    Spacer()
-                                    Text("Please fill in two text fields")
-                                        .font(.custom("OpenSans-Regular", size: 13))
-                                        .foregroundColor(.magenta)
-                                        .opacity(showingError ? 1 : 0)
-                                    Button(action: {
-                                        withAnimation {
-                                            if self.newQuestion.isEmpty || self.newAnswer.isEmpty {
-                                                self.showingError = true
-                                            } else {
-                                                self.showingError = false
-                                                self.addCard()
-                                                self.angle += 45
-                                                self.showingAddCard = false
-                                                self.displayCards()
-                                            }
-                                        }
-                                    }) {
-                                        Text("Add")
-                                            .font(.custom("Herculanum", size: 17))
-                                            .foregroundColor(.white)
-                                            .padding(.horizontal, 37)
-                                            .padding(.vertical, 14)
-                                            .background(
-                                                RoundedRectangle(cornerRadius: 30)
-                                                    .fill(Color.goldGrdnt)
-                                        )
-                                    }
-                                    .padding(.vertical, 10)
-                                }
+                            AddNewCardView { newCard in
+                                stack.add(card: newCard)
+                                displayCards()
+                                showingAddCard = false 
                             }
-                            .padding(.bottom, 15)
                         }
 
                         Section {
@@ -186,13 +113,15 @@ struct CardsListView: View {
                                     self.showingCategorySettings = true
                                 }){
                                     Text("Edit symbol for category")
-                                        .font(.custom("OpenSans-Regular", size: 14))
-                                        .foregroundColor(Color.magenta)
+                                        .fontOpenSansModifier(.footnote, color: .magenta)
                                 }
                             }
                             
                             ForEach(shownCards, id: \.self) { card in
-                                NavigationLink(destination: EditCardView(id: card.id)) {
+                                NavigationLink(
+                                    destination: EditCardView(card: card) { question, answer, category in
+                                        editCard(with: card.id, question: question, answer: answer, category: category)
+                                    }) {
                                     HStack {
                                         RoundedRectangle(cornerRadius: 10)
                                             .fill(Color.gradients[card.categoryId])
@@ -201,9 +130,9 @@ struct CardsListView: View {
                                         
                                         VStack(alignment: .leading) {
                                             Text(card.question)
-                                                .font(.custom("OpenSans-Regular", size: 16))
+                                                .fontOpenSansModifier(.headline)
                                             Text(card.answer)
-                                                .font(.custom("OpenSans-Regular", size: 14))
+                                                .fontOpenSansModifier(.subheadline)
                                                 .opacity(0.6)
                                         }
                                         .foregroundColor(Color.grapeDrk)
@@ -240,6 +169,10 @@ struct CardsListView: View {
             .labelsHidden()
         }
         .navigationViewStyle(StackNavigationViewStyle())
+    }
+    
+    private func editCard(with id: UUID, question: String, answer: String, category: Int) {
+        stack.editCard(id: id, question: question, answer: answer, category: category)
     }
     
     func displayCards() {
@@ -288,25 +221,6 @@ struct CardsListView: View {
                 }
             }
         }
-    }
-    
-    func dismiss() {
-        presentationMode.wrappedValue.dismiss()
-    }
-    
-    func addCard() {
-        let trimmedQuestion = newQuestion.trimmingCharacters(in: .whitespaces)
-        let trimmedAnswer = newAnswer.trimmingCharacters(in: .whitespaces)
-        guard trimmedQuestion.isEmpty == false && trimmedAnswer.isEmpty == false else { return }
-        
-        //let card = Card(question: trimmedQuestion, answer: trimmedAnswer, categoryId: newCategory)
-        let card = Card(question: trimmedQuestion, answer: trimmedAnswer, categoryId: newCategory.rawValue)
-        stack.add(card: card)
-        
-        newQuestion = ""
-        newAnswer = ""
-        //newCategory = 0
-        newCategory = .grape
     }
     
     func removeCards(at offsets: IndexSet) {
