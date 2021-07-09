@@ -30,6 +30,7 @@ struct ContentView: View {
                 VStack {
                     ButtonTextWithImage(type: .cards) { sheetType = .editCards }
                         .frame(maxWidth: .infinity, alignment: .leading)
+                        .padding(.top, 15)
                     HomeView(chosenCards: $chosenCards, startGame: startGame) { type in
                         sheetType = type
                     }
@@ -63,12 +64,6 @@ struct ContentView: View {
     private func startGame() {
         guard !chosenCards.isEmpty else { return }
         gameMode = true
-    }
-    
-    init() {
-        UISwitch.appearance().onTintColor = .goldDrk
-        UITableView.appearance().separatorStyle = .none
-        UITableViewCell.appearance().selectionStyle = .none
     }
 }
 

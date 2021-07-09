@@ -35,6 +35,7 @@ struct GameButtonView: View {
                         .opacity(disabled ? 0.5 : 1)
                 )
                 .scaleEffect(animation ? 1.2 : 1)
+                .fixedSize(horizontal: false, vertical: true)
         }
         .disabled(disabled)
     }

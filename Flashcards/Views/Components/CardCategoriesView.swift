@@ -16,7 +16,7 @@ struct CardCategoriesView: View {
     
     var body: some View {
         VStack {
-            Spacer(minLength: 40)
+            Spacer(minLength: 10)
             HStack(spacing: 5) {
                 ForEach(categories) { category in
                     CategoryView(
@@ -33,6 +33,7 @@ struct CardCategoriesView: View {
             GameButtonView(disabled: chosenCategories.isEmpty || numberOfCards(in: chosenCategories) == 0) {
                 startGame(chosenCategories)
             }
+            Spacer(minLength: 10)
         }
     }
     

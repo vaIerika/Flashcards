@@ -5,7 +5,7 @@
 //  Created by Valerie 👩🏼‍💻 on 13/05/2020.
 //
 
-import Foundation
+import SwiftUI
 
 struct Card: Codable, Identifiable, Hashable {
     let id: UUID
@@ -18,6 +18,10 @@ struct Card: Codable, Identifiable, Hashable {
         self.question = question
         self.answer = answer
         self.categoryId = categoryId
+    }
+    
+    func categoryColor() -> LinearGradient {
+        CategoryColor(rawValue: categoryId)?.color ?? Color.grapeGrdnt
     }
   
     static var example: Card {

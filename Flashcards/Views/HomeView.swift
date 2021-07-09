@@ -15,10 +15,12 @@ struct HomeView: View {
     var showSheet: (SheetType) -> Void
 
     var body: some View {
-        HStack(alignment: .bottom) {
+        HStack(alignment: .center) {
             VStack {
                 UserHeroView(hero: profile.hero) {
-                    showSheet(.profile)
+                    withAnimation {
+                        showSheet(.profile)
+                    }
                 }
                 HStack(spacing: 17) {
                     PictogramView(number: profile.rank, type: .rank)

@@ -21,24 +21,23 @@ struct CategoryView: View {
             RoundedRectangle(cornerRadius: 10)
                 .fill(category.color)
                 .aspectRatio(0.4, contentMode: .fit)
-            VStack {
-                Spacer()
-                Image(systemName: category.image)
-                    .font(.system(size: 25))
-                    .foregroundColor(.white)
-                Spacer()
-                Text(amountText)
-                    .fontHerculanum(.title2, color: .white)
-                    .padding(.bottom, 15)
-            }
+            Image(systemName: category.image)
+                .font(.system(size: 25))
+                .foregroundColor(.white)
         }
-        .frame(minWidth: 65, minHeight: 170)
+        .frame(minWidth: 55, minHeight: 160)
         .overlay(
                 Image(systemName: "checkmark")
                     .foregroundColor(.white)
                     .padding(8)
                     .opacity(isChosen ? 1 : 0),
             alignment: .topTrailing)
+        .overlay(
+            Text(amountText)
+                .fontHerculanum(.title2, color: .white)
+                .padding(.bottom, 20),
+            alignment: .bottom
+        )
     }
 }
 

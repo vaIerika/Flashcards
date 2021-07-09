@@ -32,10 +32,12 @@ struct UserHeroView: View {
         .onTapGesture {
             withAnimation {
                 tapAnimation = true
-                DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
+                DispatchQueue.main.asyncAfter(deadline: .now() + 0.25) {
                     tapAnimation = false
                 }
-                action()
+                DispatchQueue.main.asyncAfter(deadline: .now() + 0.30) {
+                    action()
+                }
             }
         }
         .padding(.bottom, 18)
