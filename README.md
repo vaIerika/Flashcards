@@ -31,9 +31,9 @@
 
 <br/>
 
-*List of cards, filter by category*
+*List of cards, filter by category, changing an image for the chosen category with the Long Press*
 
-![List of cards, filter](Screenshots/FilterCards.gif)
+![List of cards, filter](Screenshots/FilterCards2.gif)
 
 <br/>
 
