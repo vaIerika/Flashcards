@@ -22,11 +22,14 @@ struct GameButtonView: View {
                 DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
                     animation = false
                 }
+                DispatchQueue.main.asyncAfter(deadline: .now() + 0.25) {
+                    action()
+                }
             }
-            action()
         }) {
             Text(text)
                 .fontHerculanum(.headline, color: .white)
+                .fixedSize(horizontal: true, vertical: true)
                 .padding(.horizontal, 35)
                 .padding(.vertical, 18)
                 .background(
@@ -35,7 +38,6 @@ struct GameButtonView: View {
                         .opacity(disabled ? 0.5 : 1)
                 )
                 .scaleEffect(animation ? 1.2 : 1)
-                .fixedSize(horizontal: false, vertical: true)
         }
         .disabled(disabled)
     }

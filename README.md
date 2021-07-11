@@ -1,63 +1,63 @@
 # Flashcards  <img src="Screenshots/appLogo.png" width="40px" />
-> 
+>
 > Application to memorize information.
 >
 > Written in SwiftUI. Tested on iPhone 11.
 
 <br/>
 
-### Fuctionality of the App
-1. Create cards to memorize, edit and delete them
-2. Organize cards in a list by dividing into different categories
-3. Train cards in a game form with timer on 
-4. Filter the list of cards by categories if needed, customize categories
-5. Opportunity to retry wrong cards 
-6. Earn points and get levels according to the game result
-7. Choose hero to play for, unlock new ones with progress
-8. Save data in Documents Directory
+### Functionality of the App
+1. Create cards to memorize, edit and delete them.
+2. Organize cards in the categorized list.
+3. Train cards in a game form with timer on.
+4. Filter the list of the cards by categories if needed. Change an image for the categories.
+5. Option to retry wrong cards.
+6. Earn points and get levels according to the game result.
+7. Choose a hero to play with, unlock new ones with the progress.
 
 <br/>
 
 ### Screenshots
 
-*Game mode, card memorizing*
+*Game mode: memorizing*
 
-![Game mode](Screenshots/gameMode.gif)
-
-<br/>
-
-*Adding a card*
-
-![Add card](Screenshots/addCard.gif)
+![Game mode](Screenshots/GameMode2.gif)
 
 <br/>
 
-*Profile*
+*Profile Hero*
 
-![Profile](Screenshots/profile.gif)
+![Profile](Screenshots/ProfileHero.gif)
 
 <br/>
 
 *List of cards, filter by category*
 
-![List of cards, filter](Screenshots/categories.gif)
+![List of cards, filter](Screenshots/FilterCards.gif)
 
 <br/>
 
-*Time out during the game*
 
-![Time out](Screenshots/timeOut.gif)
+*Editing & deleting*
+
+![Time out](Screenshots/EditDeleteCard.gif)
 
 <br/>
 
-### Features 
-- Haptics
-- Custom stepper view, timer view, alert
-- Adaptation appearance of UISwitch, UITableView
-- Present cards as a stack
-- Saving data in DocumentsDirectory
-- Functions for user to personalize and organize memory cards
-- Gamification 
+*Adding a card*
+
+![Add card](Screenshots/AddingCard.gif)
+
+<br/>
+
+### Features
+- Haptics and animation.
+- Custom stepper view, alert.
+- Implementation of the cards filter by categories.
+- Timer with Notification Center that pauses if the app is hidden.
+- Data consistency with the Documents Directory. Decoding default data from the JSON file.
+- Accessibility (VoiceOver; Differentiate without color).
+- Gamification.
 
 <br/>
 
@@ -68,4 +68,4 @@ If you find a bug or want to discuss a new feature, feel free to [reach out](mai
 
 ### Credits
 
-Amazing graphic images of Greek Gods are made by [macrovector](https://www.freepik.com/macrovector). 
+Amazing graphic images of Greek Gods are made by [macrovector](https://www.freepik.com/macrovector).
