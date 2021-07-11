@@ -46,7 +46,7 @@
 
 *Adding a card*
 
-![Add card](Screenshots/AddingCard.gif)
+![Add card](Screenshots/AddingCard2.gif)
 
 <br/>
 
