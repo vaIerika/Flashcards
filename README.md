@@ -2,7 +2,7 @@
 >
 > Application to memorize information.
 >
-> Written in SwiftUI. Tested on iPhone 11.
+> Written in SwiftUI. 
 
 <br/>
 
