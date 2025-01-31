@@ -18,11 +18,8 @@
 		AFC20F692469C275000E7C17 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AFC20F682469C275000E7C17 /* Preview Assets.xcassets */; };
 		AFC20F6C2469C275000E7C17 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AFC20F6A2469C275000E7C17 /* LaunchScreen.storyboard */; };
 		B818DB4826821B730093D064 /* HeroButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B818DB4726821B730093D064 /* HeroButtonView.swift */; };
-		B821B8D0267F99B3002713C3 /* Profile.swift in Sources */ = {isa = PBXBuildFile; fileRef = B821B8CF267F99B3002713C3 /* Profile.swift */; };
 		B821B8D2267F99C7002713C3 /* Stack.swift in Sources */ = {isa = PBXBuildFile; fileRef = B821B8D1267F99C7002713C3 /* Stack.swift */; };
 		B821B8D4267F9A44002713C3 /* Card.swift in Sources */ = {isa = PBXBuildFile; fileRef = B821B8D3267F9A44002713C3 /* Card.swift */; };
-		B821B8D6267F9A68002713C3 /* Category.swift in Sources */ = {isa = PBXBuildFile; fileRef = B821B8D5267F9A68002713C3 /* Category.swift */; };
-		B821B8DA267F9A8F002713C3 /* DefaultCards.json in Resources */ = {isa = PBXBuildFile; fileRef = B821B8D9267F9A8F002713C3 /* DefaultCards.json */; };
 		B821B8DC267F9AC2002713C3 /* Hero.swift in Sources */ = {isa = PBXBuildFile; fileRef = B821B8DB267F9AC2002713C3 /* Hero.swift */; };
 		B821B8EB267F9AE9002713C3 /* ResultsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B821B8DF267F9AE8002713C3 /* ResultsView.swift */; };
 		B821B8EC267F9AE9002713C3 /* CardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B821B8E0267F9AE9002713C3 /* CardView.swift */; };
@@ -42,13 +39,16 @@
 		B821B906267F9B87002713C3 /* HeroesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B821B8FE267F9B86002713C3 /* HeroesView.swift */; };
 		B821B907267F9B87002713C3 /* GameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B821B8FF267F9B86002713C3 /* GameView.swift */; };
 		B821B908267F9B87002713C3 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B821B900267F9B87002713C3 /* HomeView.swift */; };
+		B82BB3AD2D4D0DED006AD3CB /* Profile.swift in Sources */ = {isa = PBXBuildFile; fileRef = B82BB3AC2D4D0DED006AD3CB /* Profile.swift */; };
+		B82BB3B52D4D1010006AD3CB /* DefaultCards.json in Resources */ = {isa = PBXBuildFile; fileRef = B82BB3B42D4D1010006AD3CB /* DefaultCards.json */; };
+		B82BB3B72D4D103D006AD3CB /* Category.swift in Sources */ = {isa = PBXBuildFile; fileRef = B82BB3B62D4D103D006AD3CB /* Category.swift */; };
+		B82BB3B92D4D1394006AD3CB /* ScoreView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B82BB3B82D4D1394006AD3CB /* ScoreView.swift */; };
 		B85E3F4D267E0A21000436C8 /* Bundle+Decodable.swift in Sources */ = {isa = PBXBuildFile; fileRef = B85E3F4C267E0A21000436C8 /* Bundle+Decodable.swift */; };
 		B88812872689E20A00BEF9D5 /* StepperArrowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B88812862689E20A00BEF9D5 /* StepperArrowView.swift */; };
 		B88A99E326985C7E00D56721 /* CardListItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B88A99E226985C7E00D56721 /* CardListItemView.swift */; };
 		B88A99E72698703000D56721 /* FiltersView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B88A99E62698703000D56721 /* FiltersView.swift */; };
 		B896928226974D6600D62A62 /* ButtonTextWithImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = B896928126974D6600D62A62 /* ButtonTextWithImage.swift */; };
 		B89692842697565100D62A62 /* AddNewCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B89692832697565100D62A62 /* AddNewCardView.swift */; };
-		B8B979AF2692ED3C00206C5B /* ScoreView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8B979AE2692ED3C00206C5B /* ScoreView.swift */; };
 		B8B979B32693040400206C5B /* GameResults.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8B979B22693040400206C5B /* GameResults.swift */; };
 		B8E9A74A2687421F002C6EEC /* PrettyNumberView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8E9A7492687421F002C6EEC /* PrettyNumberView.swift */; };
 /* End PBXBuildFile section */
@@ -67,11 +67,8 @@
 		AFC20F6B2469C275000E7C17 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		AFC20F6D2469C275000E7C17 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B818DB4726821B730093D064 /* HeroButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeroButtonView.swift; sourceTree = "<group>"; };
-		B821B8CF267F99B3002713C3 /* Profile.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Profile.swift; path = "../../../../../../Downloads/Flashcards-master/Flashcards/ViewModel/Profile.swift"; sourceTree = "<group>"; };
 		B821B8D1267F99C7002713C3 /* Stack.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Stack.swift; sourceTree = "<group>"; };
 		B821B8D3267F9A44002713C3 /* Card.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Card.swift; sourceTree = "<group>"; };
-		B821B8D5267F9A68002713C3 /* Category.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Category.swift; path = "../../../../../../Downloads/Flashcards-master/Flashcards/Model/Category.swift"; sourceTree = "<group>"; };
-		B821B8D9267F9A8F002713C3 /* DefaultCards.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = DefaultCards.json; path = ../../../../../../.Trash/DefaultCards.json; sourceTree = "<group>"; };
 		B821B8DB267F9AC2002713C3 /* Hero.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Hero.swift; sourceTree = "<group>"; };
 		B821B8DF267F9AE8002713C3 /* ResultsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResultsView.swift; sourceTree = "<group>"; };
 		B821B8E0267F9AE9002713C3 /* CardView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CardView.swift; sourceTree = "<group>"; };
@@ -91,13 +88,16 @@
 		B821B8FE267F9B86002713C3 /* HeroesView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HeroesView.swift; sourceTree = "<group>"; };
 		B821B8FF267F9B86002713C3 /* GameView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameView.swift; sourceTree = "<group>"; };
 		B821B900267F9B87002713C3 /* HomeView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
+		B82BB3AC2D4D0DED006AD3CB /* Profile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Profile.swift; sourceTree = "<group>"; };
+		B82BB3B42D4D1010006AD3CB /* DefaultCards.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = DefaultCards.json; sourceTree = "<group>"; };
+		B82BB3B62D4D103D006AD3CB /* Category.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Category.swift; sourceTree = "<group>"; };
+		B82BB3B82D4D1394006AD3CB /* ScoreView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScoreView.swift; sourceTree = "<group>"; };
 		B85E3F4C267E0A21000436C8 /* Bundle+Decodable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Bundle+Decodable.swift"; sourceTree = "<group>"; };
 		B88812862689E20A00BEF9D5 /* StepperArrowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StepperArrowView.swift; sourceTree = "<group>"; };
 		B88A99E226985C7E00D56721 /* CardListItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardListItemView.swift; sourceTree = "<group>"; };
 		B88A99E62698703000D56721 /* FiltersView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FiltersView.swift; sourceTree = "<group>"; };
 		B896928126974D6600D62A62 /* ButtonTextWithImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonTextWithImage.swift; sourceTree = "<group>"; };
 		B89692832697565100D62A62 /* AddNewCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddNewCardView.swift; sourceTree = "<group>"; };
-		B8B979AE2692ED3C00206C5B /* ScoreView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ScoreView.swift; path = Buttons/ScoreView.swift; sourceTree = "<group>"; };
 		B8B979B22693040400206C5B /* GameResults.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameResults.swift; sourceTree = "<group>"; };
 		B8E9A7492687421F002C6EEC /* PrettyNumberView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrettyNumberView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -125,22 +125,22 @@
 		AF6F71AB2472E8D2008D3A0D /* Components */ = {
 			isa = PBXGroup;
 			children = (
-				B83C1DF4268B3F24004E74BB /* Buttons */,
-				B821B8E9267F9AE9002713C3 /* PictogramView.swift */,
-				B88A99E62698703000D56721 /* FiltersView.swift */,
-				B88A99E226985C7E00D56721 /* CardListItemView.swift */,
 				B89692832697565100D62A62 /* AddNewCardView.swift */,
-				B821B8E1267F9AE9002713C3 /* CategoryView.swift */,
-				B8B979AE2692ED3C00206C5B /* ScoreView.swift */,
-				B8E9A7492687421F002C6EEC /* PrettyNumberView.swift */,
-				B821B8E0267F9AE9002713C3 /* CardView.swift */,
+				B83C1DF4268B3F24004E74BB /* Buttons */,
 				B821B8E3267F9AE9002713C3 /* CardCategoriesView.swift */,
-				B821B8E2267F9AE9002713C3 /* UserHeroView.swift */,
-				B821B8E8267F9AE9002713C3 /* TimerView.swift */,
-				B821B8EA267F9AE9002713C3 /* TextFieldView.swift */,
-				B821B8E5267F9AE9002713C3 /* CategoryStepperView.swift */,
+				B88A99E226985C7E00D56721 /* CardListItemView.swift */,
+				B821B8E0267F9AE9002713C3 /* CardView.swift */,
 				B821B8E6267F9AE9002713C3 /* CategorySettings.swift */,
+				B821B8E5267F9AE9002713C3 /* CategoryStepperView.swift */,
+				B821B8E1267F9AE9002713C3 /* CategoryView.swift */,
+				B88A99E62698703000D56721 /* FiltersView.swift */,
+				B821B8E9267F9AE9002713C3 /* PictogramView.swift */,
+				B8E9A7492687421F002C6EEC /* PrettyNumberView.swift */,
 				B821B8DF267F9AE8002713C3 /* ResultsView.swift */,
+				B82BB3B82D4D1394006AD3CB /* ScoreView.swift */,
+				B821B8EA267F9AE9002713C3 /* TextFieldView.swift */,
+				B821B8E8267F9AE9002713C3 /* TimerView.swift */,
+				B821B8E2267F9AE9002713C3 /* UserHeroView.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -149,10 +149,10 @@
 			isa = PBXGroup;
 			children = (
 				B821B8D3267F9A44002713C3 /* Card.swift */,
+				B82BB3B62D4D103D006AD3CB /* Category.swift */,
+				B82BB3B42D4D1010006AD3CB /* DefaultCards.json */,
 				B8B979B22693040400206C5B /* GameResults.swift */,
-				B821B8D5267F9A68002713C3 /* Category.swift */,
 				B821B8DB267F9AC2002713C3 /* Hero.swift */,
-				B821B8D9267F9A8F002713C3 /* DefaultCards.json */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -160,13 +160,13 @@
 		AF7F5964246C24A700EEBFE2 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				B821B8FC267F9B86002713C3 /* ContentView.swift */,
-				B821B8FF267F9B86002713C3 /* GameView.swift */,
-				B821B900267F9B87002713C3 /* HomeView.swift */,
-				B821B8FE267F9B86002713C3 /* HeroesView.swift */,
-				B821B8FB267F9B86002713C3 /* EditCardView.swift */,
 				B821B8FA267F9B86002713C3 /* CardsListView.swift */,
 				AF6F71AB2472E8D2008D3A0D /* Components */,
+				B821B8FC267F9B86002713C3 /* ContentView.swift */,
+				B821B8FB267F9B86002713C3 /* EditCardView.swift */,
+				B821B8FF267F9B86002713C3 /* GameView.swift */,
+				B821B8FE267F9B86002713C3 /* HeroesView.swift */,
+				B821B900267F9B87002713C3 /* HomeView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -203,16 +203,16 @@
 			isa = PBXGroup;
 			children = (
 				AFC20F5F2469C26E000E7C17 /* AppDelegate.swift */,
-				AFC20F612469C26E000E7C17 /* SceneDelegate.swift */,
-				B85E3F4E267E0D28000436C8 /* ViewModel */,
-				AF7F595D246C21D700EEBFE2 /* Model */,
-				AF7F5964246C24A700EEBFE2 /* Views */,
+				AFC20F652469C275000E7C17 /* Assets.xcassets */,
 				AF7F596D246C2EAD00EEBFE2 /* Extensions */,
 				AF6F719D2472A415008D3A0D /* Fonts */,
-				AFC20F652469C275000E7C17 /* Assets.xcassets */,
-				AFC20F6A2469C275000E7C17 /* LaunchScreen.storyboard */,
 				AFC20F6D2469C275000E7C17 /* Info.plist */,
+				AFC20F6A2469C275000E7C17 /* LaunchScreen.storyboard */,
+				AF7F595D246C21D700EEBFE2 /* Model */,
 				AFC20F672469C275000E7C17 /* Preview Content */,
+				AFC20F612469C26E000E7C17 /* SceneDelegate.swift */,
+				B85E3F4E267E0D28000436C8 /* ViewModel */,
+				AF7F5964246C24A700EEBFE2 /* Views */,
 			);
 			path = Flashcards;
 			sourceTree = "<group>";
@@ -239,7 +239,7 @@
 		B85E3F4E267E0D28000436C8 /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
-				B821B8CF267F99B3002713C3 /* Profile.swift */,
+				B82BB3AC2D4D0DED006AD3CB /* Profile.swift */,
 				B821B8D1267F99C7002713C3 /* Stack.swift */,
 			);
 			path = ViewModel;
@@ -304,8 +304,8 @@
 			files = (
 				AF6F71A82472A953008D3A0D /* OpenSans-Regular.ttf in Resources */,
 				AFC20F6C2469C275000E7C17 /* LaunchScreen.storyboard in Resources */,
-				B821B8DA267F9A8F002713C3 /* DefaultCards.json in Resources */,
 				AFC20F692469C275000E7C17 /* Preview Assets.xcassets in Resources */,
+				B82BB3B52D4D1010006AD3CB /* DefaultCards.json in Resources */,
 				AF6F719F2472A429008D3A0D /* Herculanum.ttf in Resources */,
 				AFC20F662469C275000E7C17 /* Assets.xcassets in Resources */,
 			);
@@ -319,9 +319,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				B85E3F4D267E0A21000436C8 /* Bundle+Decodable.swift in Sources */,
+				B82BB3B92D4D1394006AD3CB /* ScoreView.swift in Sources */,
 				B821B8D2267F99C7002713C3 /* Stack.swift in Sources */,
 				B821B904267F9B87002713C3 /* ContentView.swift in Sources */,
-				B8B979AF2692ED3C00206C5B /* ScoreView.swift in Sources */,
 				AF7F5971246C38C000EEBFE2 /* ColorExtension.swift in Sources */,
 				B821B903267F9B87002713C3 /* EditCardView.swift in Sources */,
 				B821B8F3267F9AE9002713C3 /* GameButtonView.swift in Sources */,
@@ -334,11 +334,12 @@
 				B821B8EF267F9AE9002713C3 /* CardCategoriesView.swift in Sources */,
 				B821B8DC267F9AC2002713C3 /* Hero.swift in Sources */,
 				B88812872689E20A00BEF9D5 /* StepperArrowView.swift in Sources */,
+				B82BB3AD2D4D0DED006AD3CB /* Profile.swift in Sources */,
 				B821B908267F9B87002713C3 /* HomeView.swift in Sources */,
 				B821B902267F9B87002713C3 /* CardsListView.swift in Sources */,
 				AFC20F602469C26E000E7C17 /* AppDelegate.swift in Sources */,
-				B821B8D6267F9A68002713C3 /* Category.swift in Sources */,
 				B821B8F1267F9AE9002713C3 /* CategoryStepperView.swift in Sources */,
+				B82BB3B72D4D103D006AD3CB /* Category.swift in Sources */,
 				B821B8EC267F9AE9002713C3 /* CardView.swift in Sources */,
 				B821B8F2267F9AE9002713C3 /* CategorySettings.swift in Sources */,
 				B818DB4826821B730093D064 /* HeroButtonView.swift in Sources */,
@@ -347,7 +348,6 @@
 				B8B979B32693040400206C5B /* GameResults.swift in Sources */,
 				B88A99E326985C7E00D56721 /* CardListItemView.swift in Sources */,
 				B821B8F4267F9AE9002713C3 /* TimerView.swift in Sources */,
-				B821B8D0267F99B3002713C3 /* Profile.swift in Sources */,
 				AF7F596F246C2EC300EEBFE2 /* ViewExtension.swift in Sources */,
 				B821B8F6267F9AE9002713C3 /* TextFieldView.swift in Sources */,
 				AFC20F622469C26E000E7C17 /* SceneDelegate.swift in Sources */,
